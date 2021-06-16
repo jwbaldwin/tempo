@@ -1,7 +1,7 @@
-defmodule HabitWeb.UserRegistrationControllerTest do
-  use HabitWeb.ConnCase, async: true
+defmodule TempoWeb.UserRegistrationControllerTest do
+  use TempoWeb.ConnCase, async: true
 
-  import Habit.AccountsFixtures
+  import Tempo.AccountsFixtures
 
   describe "GET /users/register" do
     test "renders registration page", %{conn: conn} do

@@ -1,5 +1,5 @@
-defmodule HabitWeb.PageLiveTest do
-  use HabitWeb.ConnCase
+defmodule TempoWeb.PageLiveTest do
+  use TempoWeb.ConnCase
 
   import Phoenix.LiveViewTest
 

@@ -1,11 +1,11 @@
-defmodule Habit.Accounts do
+defmodule Tempo.Accounts do
   @moduledoc """
   The Accounts context.
   """
 
   import Ecto.Query, warn: false
-  alias Habit.Repo
-  alias Habit.Accounts.{User, UserToken, UserNotifier}
+  alias Tempo.Repo
+  alias Tempo.Accounts.{User, UserToken, UserNotifier}
 
   ## Database getters
 

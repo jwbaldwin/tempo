@@ -1,4 +1,4 @@
-defmodule HabitWeb.Telemetry do
+defmodule TempoWeb.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -31,11 +31,11 @@ defmodule HabitWeb.Telemetry do
       ),
 
       # Database Metrics
-      summary("habit.repo.query.total_time", unit: {:native, :millisecond}),
-      summary("habit.repo.query.decode_time", unit: {:native, :millisecond}),
-      summary("habit.repo.query.query_time", unit: {:native, :millisecond}),
-      summary("habit.repo.query.queue_time", unit: {:native, :millisecond}),
-      summary("habit.repo.query.idle_time", unit: {:native, :millisecond}),
+      summary("tempo.repo.query.total_time", unit: {:native, :millisecond}),
+      summary("tempo.repo.query.decode_time", unit: {:native, :millisecond}),
+      summary("tempo.repo.query.query_time", unit: {:native, :millisecond}),
+      summary("tempo.repo.query.queue_time", unit: {:native, :millisecond}),
+      summary("tempo.repo.query.idle_time", unit: {:native, :millisecond}),
 
       # VM Metrics
       summary("vm.memory.total", unit: {:byte, :kilobyte}),
@@ -49,7 +49,7 @@ defmodule HabitWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {HabitWeb, :count_users, []}
+      # {TempoWeb, :count_users, []}
     ]
   end
 end

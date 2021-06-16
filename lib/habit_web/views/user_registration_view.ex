@@ -1,3 +1,3 @@
-defmodule HabitWeb.UserRegistrationView do
-  use HabitWeb, :view
+defmodule TempoWeb.UserRegistrationView do
+  use TempoWeb, :view
 end

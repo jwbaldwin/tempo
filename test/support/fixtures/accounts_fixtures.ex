@@ -1,7 +1,7 @@
-defmodule Habit.AccountsFixtures do
+defmodule Tempo.AccountsFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Habit.Accounts` context.
+  entities via the `Tempo.Accounts` context.
   """
 
   def unique_user_email, do: "user#{System.unique_integer()}@example.com"
@@ -18,7 +18,7 @@ defmodule Habit.AccountsFixtures do
     {:ok, user} =
       attrs
       |> valid_user_attributes()
-      |> Habit.Accounts.register_user()
+      |> Tempo.Accounts.register_user()
 
     user
   end

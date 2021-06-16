@@ -1,15 +1,15 @@
-defmodule HabitWeb.UserAuth do
+defmodule TempoWeb.UserAuth do
   import Plug.Conn
   import Phoenix.Controller
 
-  alias Habit.Accounts
-  alias HabitWeb.Router.Helpers, as: Routes
+  alias Tempo.Accounts
+  alias TempoWeb.Router.Helpers, as: Routes
 
   # Make the remember me cookie valid for 60 days.
   # If you want bump or reduce this value, also change
   # the token expiry itself in UserToken.
   @max_age 60 * 60 * 24 * 60
-  @remember_me_cookie "_habit_web_user_remember_me"
+  @remember_me_cookie "_tempo_web_user_remember_me"
   @remember_me_options [sign: true, max_age: @max_age, same_site: "Lax"]
 
   @doc """
@@ -75,7 +75,7 @@ defmodule HabitWeb.UserAuth do
     user_token && Accounts.delete_session_token(user_token)
 
     if live_socket_id = get_session(conn, :live_socket_id) do
-      HabitWeb.Endpoint.broadcast(live_socket_id, "disconnect", %{})
+      TempoWeb.Endpoint.broadcast(live_socket_id, "disconnect", %{})
     end
 
     conn

@@ -1,9 +1,9 @@
-defmodule Habit.AccountsTest do
-  use Habit.DataCase
+defmodule Tempo.AccountsTest do
+  use Tempo.DataCase
 
-  alias Habit.Accounts
-  import Habit.AccountsFixtures
-  alias Habit.Accounts.{User, UserToken}
+  alias Tempo.Accounts
+  import Tempo.AccountsFixtures
+  alias Tempo.Accounts.{User, UserToken}
 
   describe "get_user_by_email/1" do
     test "does not return the user if the email does not exist" do

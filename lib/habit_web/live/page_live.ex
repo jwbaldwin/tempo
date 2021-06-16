@@ -1,5 +1,5 @@
-defmodule HabitWeb.PageLive do
-  use HabitWeb, :live_view
+defmodule TempoWeb.PageLive do
+  use TempoWeb, :live_view
 
   @impl true
   def mount(_params, _session, socket) do
@@ -26,7 +26,7 @@ defmodule HabitWeb.PageLive do
   end
 
   defp search(query) do
-    if not HabitWeb.Endpoint.config(:code_reloader) do
+    if not TempoWeb.Endpoint.config(:code_reloader) do
       raise "action disabled when not in development"
     end
 

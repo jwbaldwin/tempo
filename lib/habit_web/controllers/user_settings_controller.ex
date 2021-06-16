@@ -1,8 +1,8 @@
-defmodule HabitWeb.UserSettingsController do
-  use HabitWeb, :controller
+defmodule TempoWeb.UserSettingsController do
+  use TempoWeb, :controller
 
-  alias Habit.Accounts
-  alias HabitWeb.UserAuth
+  alias Tempo.Accounts
+  alias TempoWeb.UserAuth
 
   plug :assign_email_and_password_changesets
 

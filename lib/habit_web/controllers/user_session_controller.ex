@@ -1,8 +1,8 @@
-defmodule HabitWeb.UserSessionController do
-  use HabitWeb, :controller
+defmodule TempoWeb.UserSessionController do
+  use TempoWeb, :controller
 
-  alias Habit.Accounts
-  alias HabitWeb.UserAuth
+  alias Tempo.Accounts
+  alias TempoWeb.UserAuth
 
   def new(conn, _params) do
     render(conn, "new.html", error_message: nil)

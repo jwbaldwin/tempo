@@ -1,8 +1,8 @@
-defmodule HabitWeb.UserSettingsControllerTest do
-  use HabitWeb.ConnCase, async: true
+defmodule TempoWeb.UserSettingsControllerTest do
+  use TempoWeb.ConnCase, async: true
 
-  alias Habit.Accounts
-  import Habit.AccountsFixtures
+  alias Tempo.Accounts
+  import Tempo.AccountsFixtures
 
   setup :register_and_log_in_user
 

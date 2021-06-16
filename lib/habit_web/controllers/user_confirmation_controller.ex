@@ -1,7 +1,7 @@
-defmodule HabitWeb.UserConfirmationController do
-  use HabitWeb, :controller
+defmodule TempoWeb.UserConfirmationController do
+  use TempoWeb, :controller
 
-  alias Habit.Accounts
+  alias Tempo.Accounts
 
   def new(conn, _params) do
     render(conn, "new.html")

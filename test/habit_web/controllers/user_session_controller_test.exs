@@ -1,7 +1,7 @@
-defmodule HabitWeb.UserSessionControllerTest do
-  use HabitWeb.ConnCase, async: true
+defmodule TempoWeb.UserSessionControllerTest do
+  use TempoWeb.ConnCase, async: true
 
-  import Habit.AccountsFixtures
+  import Tempo.AccountsFixtures
 
   setup do
     %{user: user_fixture()}
@@ -50,7 +50,7 @@ defmodule HabitWeb.UserSessionControllerTest do
           }
         })
 
-      assert conn.resp_cookies["_habit_web_user_remember_me"]
+      assert conn.resp_cookies["_tempo_web_user_remember_me"]
       assert redirected_to(conn) =~ "/"
     end
 

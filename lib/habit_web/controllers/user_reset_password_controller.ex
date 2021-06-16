@@ -1,7 +1,7 @@
-defmodule HabitWeb.UserResetPasswordController do
-  use HabitWeb, :controller
+defmodule TempoWeb.UserResetPasswordController do
+  use TempoWeb, :controller
 
-  alias Habit.Accounts
+  alias Tempo.Accounts
 
   plug :get_user_by_reset_password_token when action in [:edit, :update]
 

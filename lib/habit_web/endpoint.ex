@@ -1,16 +1,16 @@
-defmodule HabitWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :habit
+defmodule TempoWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :tempo
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_habit_key",
+    key: "_tempo_key",
     signing_salt: "00F+Ve9b"
   ]
 
-  socket "/socket", HabitWeb.UserSocket,
+  socket "/socket", TempoWeb.UserSocket,
     websocket: true,
     longpoll: false
 
@@ -22,7 +22,7 @@ defmodule HabitWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :habit,
+    from: :tempo,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
@@ -32,7 +32,7 @@ defmodule HabitWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :habit
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :tempo
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -50,5 +50,5 @@ defmodule HabitWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug HabitWeb.Router
+  plug TempoWeb.Router
 end

@@ -1,3 +1,3 @@
-defmodule HabitWeb.LayoutView do
-  use HabitWeb, :view
+defmodule TempoWeb.LayoutView do
+  use TempoWeb, :view
 end

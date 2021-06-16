@@ -7,15 +7,15 @@
 # General application configuration
 use Mix.Config
 
-config :habit,
-  ecto_repos: [Habit.Repo]
+config :tempo,
+  ecto_repos: [Tempo.Repo]
 
 # Configures the endpoint
-config :habit, HabitWeb.Endpoint,
+config :tempo, TempoWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Ok8cAFYs0osJeRpyNoNcHXG7ZCljsmrWwIdHsT25ChJiLOgDAsr1zX/tfIfHD87X",
-  render_errors: [view: HabitWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Habit.PubSub,
+  render_errors: [view: TempoWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Tempo.PubSub,
   live_view: [signing_salt: "c8KAldRC"]
 
 # Configures Elixir's Logger

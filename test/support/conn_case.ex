@@ -1,4 +1,4 @@
-defmodule HabitWeb.ConnCase do
+defmodule TempoWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule HabitWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use HabitWeb.ConnCase, async: true`, although
+  by setting `use TempoWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -22,20 +22,20 @@ defmodule HabitWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import HabitWeb.ConnCase
+      import TempoWeb.ConnCase
 
-      alias HabitWeb.Router.Helpers, as: Routes
+      alias TempoWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint HabitWeb.Endpoint
+      @endpoint TempoWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Habit.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Tempo.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Habit.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Tempo.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
@@ -50,7 +50,7 @@ defmodule HabitWeb.ConnCase do
   test context.
   """
   def register_and_log_in_user(%{conn: conn}) do
-    user = Habit.AccountsFixtures.user_fixture()
+    user = Tempo.AccountsFixtures.user_fixture()
     %{conn: log_in_user(conn, user), user: user}
   end
 
@@ -60,7 +60,7 @@ defmodule HabitWeb.ConnCase do
   It returns an updated `conn`.
   """
   def log_in_user(conn, user) do
-    token = Habit.Accounts.generate_user_session_token(user)
+    token = Tempo.Accounts.generate_user_session_token(user)
 
     conn
     |> Phoenix.ConnTest.init_test_session(%{})

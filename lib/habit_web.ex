@@ -1,12 +1,12 @@
-defmodule HabitWeb do
+defmodule TempoWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use HabitWeb, :controller
-      use HabitWeb, :view
+      use TempoWeb, :controller
+      use TempoWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,19 +19,19 @@ defmodule HabitWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: HabitWeb
+      use Phoenix.Controller, namespace: TempoWeb
 
       import Plug.Conn
-      import HabitWeb.Gettext
-      alias HabitWeb.Router.Helpers, as: Routes
+      import TempoWeb.Gettext
+      alias TempoWeb.Router.Helpers, as: Routes
     end
   end
 
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/habit_web/templates",
-        namespace: HabitWeb
+        root: "lib/tempo_web/templates",
+        namespace: TempoWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
@@ -45,7 +45,7 @@ defmodule HabitWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {HabitWeb.LayoutView, "live.html"}
+        layout: {TempoWeb.LayoutView, "live.html"}
 
       unquote(view_helpers())
     end
@@ -72,7 +72,7 @@ defmodule HabitWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import HabitWeb.Gettext
+      import TempoWeb.Gettext
     end
   end
 
@@ -87,9 +87,9 @@ defmodule HabitWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import HabitWeb.ErrorHelpers
-      import HabitWeb.Gettext
-      alias HabitWeb.Router.Helpers, as: Routes
+      import TempoWeb.ErrorHelpers
+      import TempoWeb.Gettext
+      alias TempoWeb.Router.Helpers, as: Routes
     end
   end
 

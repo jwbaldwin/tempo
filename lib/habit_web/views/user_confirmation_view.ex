@@ -1,3 +1,3 @@
-defmodule HabitWeb.UserConfirmationView do
-  use HabitWeb, :view
+defmodule TempoWeb.UserConfirmationView do
+  use TempoWeb, :view
 end

@@ -1,9 +1,9 @@
-defmodule HabitWeb.UserRegistrationController do
-  use HabitWeb, :controller
+defmodule TempoWeb.UserRegistrationController do
+  use TempoWeb, :controller
 
-  alias Habit.Accounts
-  alias Habit.Accounts.User
-  alias HabitWeb.UserAuth
+  alias Tempo.Accounts
+  alias Tempo.Accounts.User
+  alias TempoWeb.UserAuth
 
   def new(conn, _params) do
     changeset = Accounts.change_user_registration(%User{})

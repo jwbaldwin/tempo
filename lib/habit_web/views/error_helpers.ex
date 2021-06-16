@@ -1,4 +1,4 @@
-defmodule HabitWeb.ErrorHelpers do
+defmodule TempoWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -39,9 +39,9 @@ defmodule HabitWeb.ErrorHelpers do
     # should be written to the errors.po file. The :count option is
     # set by Ecto and indicates we should also apply plural rules.
     if count = opts[:count] do
-      Gettext.dngettext(HabitWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(TempoWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(HabitWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(TempoWeb.Gettext, "errors", msg, opts)
     end
   end
 end

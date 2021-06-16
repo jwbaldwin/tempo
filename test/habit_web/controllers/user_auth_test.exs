@@ -1,16 +1,16 @@
-defmodule HabitWeb.UserAuthTest do
-  use HabitWeb.ConnCase, async: true
+defmodule TempoWeb.UserAuthTest do
+  use TempoWeb.ConnCase, async: true
 
-  alias Habit.Accounts
-  alias HabitWeb.UserAuth
-  import Habit.AccountsFixtures
+  alias Tempo.Accounts
+  alias TempoWeb.UserAuth
+  import Tempo.AccountsFixtures
 
-  @remember_me_cookie "_habit_web_user_remember_me"
+  @remember_me_cookie "_tempo_web_user_remember_me"
 
   setup %{conn: conn} do
     conn =
       conn
-      |> Map.replace!(:secret_key_base, HabitWeb.Endpoint.config(:secret_key_base))
+      |> Map.replace!(:secret_key_base, TempoWeb.Endpoint.config(:secret_key_base))
       |> init_test_session(%{})
 
     %{user: user_fixture(), conn: conn}
@@ -65,7 +65,7 @@ defmodule HabitWeb.UserAuthTest do
 
     test "broadcasts to the given live_socket_id", %{conn: conn} do
       live_socket_id = "users_sessions:abcdef-token"
-      HabitWeb.Endpoint.subscribe(live_socket_id)
+      TempoWeb.Endpoint.subscribe(live_socket_id)
 
       conn
       |> put_session(:live_socket_id, live_socket_id)

@@ -1,4 +1,4 @@
-defmodule Habit.DataCase do
+defmodule Tempo.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule Habit.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use Habit.DataCase, async: true`, although
+  by setting `use Tempo.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -18,20 +18,20 @@ defmodule Habit.DataCase do
 
   using do
     quote do
-      alias Habit.Repo
+      alias Tempo.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Habit.DataCase
+      import Tempo.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Habit.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Tempo.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Habit.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Tempo.Repo, {:shared, self()})
     end
 
     :ok

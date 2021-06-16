@@ -1,9 +1,9 @@
-defmodule HabitWeb.UserResetPasswordControllerTest do
-  use HabitWeb.ConnCase, async: true
+defmodule TempoWeb.UserResetPasswordControllerTest do
+  use TempoWeb.ConnCase, async: true
 
-  alias Habit.Accounts
-  alias Habit.Repo
-  import Habit.AccountsFixtures
+  alias Tempo.Accounts
+  alias Tempo.Repo
+  import Tempo.AccountsFixtures
 
   setup do
     %{user: user_fixture()}

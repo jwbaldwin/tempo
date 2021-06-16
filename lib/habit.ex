@@ -1,6 +1,6 @@
-defmodule Habit do
+defmodule Tempo do
   @moduledoc """
-  Habit keeps the contexts that define your domain
+  Tempo keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

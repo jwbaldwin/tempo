@@ -1,10 +1,10 @@
 use Mix.Config
 
 # Configure your database
-config :habit, Habit.Repo,
+config :tempo, Tempo.Repo,
   username: "postgres",
   password: "postgres",
-  database: "habit_dev",
+  database: "tempo_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -15,7 +15,7 @@ config :habit, Habit.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :habit, HabitWeb.Endpoint,
+config :tempo, TempoWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -53,13 +53,13 @@ config :habit, HabitWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :habit, HabitWeb.Endpoint,
+config :tempo, TempoWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/habit_web/(live|views)/.*(ex)$",
-      ~r"lib/habit_web/templates/.*(eex)$"
+      ~r"lib/tempo_web/(live|views)/.*(ex)$",
+      ~r"lib/tempo_web/templates/.*(eex)$"
     ]
   ]
 

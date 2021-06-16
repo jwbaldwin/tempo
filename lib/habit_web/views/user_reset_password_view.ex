@@ -1,3 +1,3 @@
-defmodule HabitWeb.UserResetPasswordView do
-  use HabitWeb, :view
+defmodule TempoWeb.UserResetPasswordView do
+  use TempoWeb, :view
 end

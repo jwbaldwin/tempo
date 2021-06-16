@@ -1,5 +1,5 @@
-defmodule HabitWeb.ErrorView do
-  use HabitWeb, :view
+defmodule TempoWeb.ErrorView do
+  use TempoWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.
