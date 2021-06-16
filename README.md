@@ -1,4 +1,8 @@
 # Tempo
+Tempo is a hobby project built really quickly to help me track my habits and keep on tempo with them.
+
+## Thesis
+Large progress is the culmination of directed movement that results in momentum. The key to momentum is maintaining *tempo*!
 
 To start your Phoenix server:
 
@@ -18,4 +22,4 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Forum: https://elixirforum.com/c/phoenix-forum
   * Source: https://github.com/phoenixframework/phoenix
-# tempo
+
