@@ -1,0 +1,37 @@
+<h1>Listing Habits</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal @socket, TempoWeb.HabitLive.FormComponent,
+    id: @habit.id || :new,
+    title: @page_title,
+    action: @live_action,
+    habit: @habit,
+    return_to: Routes.habit_index_path(@socket, :index) %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Iterations</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="habits">
+    <%= for habit <- @habits do %>
+      <tr id="habit-<%= habit.id %>">
+        <td><%= habit.name %></td>
+        <td><%= habit.iterations %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.habit_show_path(@socket, :show, habit) %></span>
+          <span><%= live_patch "Edit", to: Routes.habit_index_path(@socket, :edit, habit) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: habit.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Habit", to: Routes.habit_index_path(@socket, :new) %></span>

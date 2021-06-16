@@ -21,6 +21,12 @@ defmodule TempoWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    live "/habits", HabitLive.Index, :index
+    live "/habits/new", HabitLive.Index, :new
+    live "/habits/:id/edit", HabitLive.Index, :edit
+
+    live "/habits/:id", HabitLive.Show, :show
+    live "/habits/:id/show/edit", HabitLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

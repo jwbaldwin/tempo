@@ -1,0 +1,27 @@
+<h1>Show Habit</h1>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal @socket, TempoWeb.HabitLive.FormComponent,
+    id: @habit.id,
+    title: @page_title,
+    action: @live_action,
+    habit: @habit,
+    return_to: Routes.habit_show_path(@socket, :show, @habit) %>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @habit.name %>
+  </li>
+
+  <li>
+    <strong>Iterations:</strong>
+    <%= @habit.iterations %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.habit_show_path(@socket, :edit, @habit), class: "button" %></span>
+<span><%= live_redirect "Back", to: Routes.habit_index_path(@socket, :index) %></span>
