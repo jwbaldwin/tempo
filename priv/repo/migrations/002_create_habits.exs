@@ -6,6 +6,8 @@ defmodule Tempo.Repo.Migrations.CreateHabits do
       add :name, :string
       add :iterations, :integer
 
+      add :user_id, references(:users, on_delete: :delete_all), null: false
+
       timestamps()
     end
 

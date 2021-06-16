@@ -6,6 +6,8 @@ defmodule Tempo.Habits.Habit do
     field :iterations, :integer
     field :name, :string
 
+    belongs_to :user, Tempo.Accounts.User
+
     timestamps()
   end
 
