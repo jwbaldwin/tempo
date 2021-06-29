@@ -1,5 +1,3 @@
-<h1>Listing Habits</h1>
-
 <%= if @live_action in [:new, :edit] do %>
   <%= live_modal @socket, TempoWeb.HabitLive.FormComponent,
     id: @habit.id || :new,
@@ -9,29 +7,19 @@
     return_to: Routes.habit_index_path(@socket, :index) %>
 <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Iterations</th>
+<div id="habits">
+  <%= for habit <- @habits do %>
+    <tr id="habit-<%= habit.id %>">
+      <td><%= habit.name %></td>
+      <td><%= habit.iterations %></td>
 
-      <th></th>
+      <td>
+        <span><%= live_redirect "Show", to: Routes.habit_show_path(@socket, :show, habit) %></span>
+        <span><%= live_patch "Edit", to: Routes.habit_index_path(@socket, :edit, habit) %></span>
+        <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: habit.id, data: [confirm: "Are you sure?"] %></span>
+      </td>
     </tr>
-  </thead>
-  <tbody id="habits">
-    <%= for habit <- @habits do %>
-      <tr id="habit-<%= habit.id %>">
-        <td><%= habit.name %></td>
-        <td><%= habit.iterations %></td>
+  <% end %>
+</div>
 
-        <td>
-          <span><%= live_redirect "Show", to: Routes.habit_show_path(@socket, :show, habit) %></span>
-          <span><%= live_patch "Edit", to: Routes.habit_index_path(@socket, :edit, habit) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: habit.id, data: [confirm: "Are you sure?"] %></span>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<span><%= live_patch "New Habit", to: Routes.habit_index_path(@socket, :new) %></span>
+<div><%= live_patch "New Habit", to: Routes.habit_index_path(@socket, :new), class: "inline-block px-5 py-3 text-xl font-semibold text-center duration-150 transform bg-red-500 border border-red-600 rounded hover:scale-105 shadow-red" %></div>

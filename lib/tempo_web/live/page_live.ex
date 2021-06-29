@@ -1,9 +1,11 @@
 defmodule TempoWeb.PageLive do
   use TempoWeb, :live_view
+  import TempoWeb.LiveHelpers
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, assign(socket, query: "", results: %{})}
+  def mount(_params, session, socket) do
+    socket = assign_defaults(session, socket)
+    {:ok, socket}
   end
 
   @impl true

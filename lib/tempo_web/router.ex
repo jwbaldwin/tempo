@@ -20,8 +20,8 @@ defmodule TempoWeb.Router do
   scope "/", TempoWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
-    live "/habits", HabitLive.Index, :index
+    # live "/", PageLive, :index
+    live "/", HabitLive.Index, :index
     live "/habits/new", HabitLive.Index, :new
     live "/habits/:id/edit", HabitLive.Index, :edit
 

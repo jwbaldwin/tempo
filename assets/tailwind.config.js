@@ -8,10 +8,16 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        red: '0 4px 1.25rem #da393f',
+      },
+    },
   },
   variants: {
-    extend: {},
+    extend: {
+     scale: ['hover'] 
+    },
   },
   plugins: [],
 }
