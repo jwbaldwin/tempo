@@ -16,5 +16,6 @@ defmodule Tempo.Habits.Habit do
     habit
     |> cast(attrs, [:name, :iterations])
     |> validate_required([:name, :iterations])
+    |> validate_number(:iterations, greater_than: 0)
   end
 end

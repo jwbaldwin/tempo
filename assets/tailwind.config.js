@@ -21,3 +21,5 @@ module.exports = {
   },
   plugins: [],
 }
+
+// TODO: Add in the configured box shadows using a plugin

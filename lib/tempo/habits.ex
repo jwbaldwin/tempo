@@ -27,8 +27,9 @@ defmodule Tempo.Habits do
   @doc """
   Creates a habit.
   """
-  def create_habit(%User{} = _user, params) do
-    %Habit{}
+  def create_habit(%User{} = user, params) do
+    Ecto.build_assoc(user, :habits)
+    |> IO.inspect()
     |> Habit.changeset(params)
     |> Repo.insert()
   end

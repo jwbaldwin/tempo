@@ -9,6 +9,8 @@ defmodule Tempo.Accounts.User do
     field :hashed_password, :string
     field :confirmed_at, :naive_datetime
 
+    has_many :habits, Tempo.Habits.Habit
+
     timestamps()
   end
 

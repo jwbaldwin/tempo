@@ -1,18 +1,30 @@
-<h2><%= @title %></h2>
+<h2 class="mb-3 text-lg font-medium leading-6 text-gray-200"><%= @title %></h2>
 
 <%= f = form_for @changeset, "#",
   id: "habit-form",
   phx_target: @myself,
   phx_change: "validate",
-  phx_submit: "save" %>
+  phx_submit: "save"
+  %>
 
-  <%= label f, :name %>
-  <%= text_input f, :name %>
+  <%= label f, :name, class: "block text-sm font-medium text-gray-300" %>
+  <%= text_input f, :name, placeholder: "Reading, gym, meditate...", class: "pl-1 mt-1 mb-2 block w-full border-gray-300 text-gray-900 placeholder-gray-300 focus:outline-none border rounded" %>
   <%= error_tag f, :name %>
 
-  <%= label f, :iterations %>
-  <%= number_input f, :iterations %>
+  <%= label f, :iterations, class: "block text-sm font-medium text-gray-300" %>
+  <div class="flex align-middle">
+    <%= number_input f, :iterations, placeholder: "per week", class: "mt-1 mb-2 pl-1 block border-gray-300 text-gray-900 placeholder-gray-300 focus:outline-none border rounded"%>
+    <span class="flex items-center pl-2 text-gray-500">/ week</span>
+  </div>
   <%= error_tag f, :iterations %>
 
-  <%= submit "Save", phx_disable_with: "Saving..." %>
+  <div class="flex flex-row-reverse">
+    <%= submit "Save habit", phx_disable_with: "Saving...", class: "bg-red-500 border border-red-600 rounded hover:bg-red-600 hover:border-red-700 shadow-red mt-4 text-medium px-3 py-1.5 font-medium leading-6 text-gray-200" %>
+  </div>
 </form>
+<style>
+  span.invalid-feedback {
+    color: rgba(239, 68, 68, 1);
+    font-size: 1em;
+  }
+</style>
