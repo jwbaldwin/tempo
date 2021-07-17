@@ -1,13 +1,14 @@
 defmodule TempoWeb.HabitLive.Index do
   use TempoWeb, :live_view
 
+  alias Tempo.Logs
   alias Tempo.Habits
   alias Tempo.Habits.Habit
 
   @impl true
   def mount(_params, session, socket) do
     socket = assign_defaults(session, socket)
-    {:ok, assign(socket, :habits, list_habits())}
+    {:ok, assign(socket, :habits, list_habits(socket))}
   end
 
   @impl true
@@ -38,10 +39,32 @@ defmodule TempoWeb.HabitLive.Index do
     habit = Habits.get_habit!(id)
     {:ok, _} = Habits.delete_habit(habit)
 
-    {:noreply, assign(socket, :habits, list_habits())}
+    {:noreply, assign(socket, :habits, list_habits(socket))}
   end
 
-  defp list_habits do
-    Habits.list_habits()
+  def handle_event("add_log", %{"id" => habit_id}, socket) do
+    save_log(socket, habit_id)
+  end
+
+  defp save_log(socket, habit_id) do
+    user = get_current_user(socket)
+
+    case Logs.create_log(%{user_id: user.id, habit_id: habit_id}) do
+      # TODO: Do I need to refetch all of the habits? no, so how do I update just the logs of the habit I changed
+      {:ok, _log} ->
+        {:noreply, assign(socket, :habits, list_habits(socket))}
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        {:noreply, assign(socket, changeset: changeset)}
+    end
+  end
+
+  defp list_habits(socket) do
+    get_current_user(socket)
+    |> Habits.list_habits()
+  end
+
+  defp get_current_user(%Phoenix.LiveView.Socket{assigns: %{current_user: user}} = _socket) do
+    user
   end
 end

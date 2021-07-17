@@ -27,6 +27,13 @@ defmodule TempoWeb.Router do
 
     live "/habits/:id", HabitLive.Show, :show
     live "/habits/:id/show/edit", HabitLive.Show, :edit
+
+    live "/logs", LogLive.Index, :index
+    live "/logs/new", LogLive.Index, :new
+    live "/logs/:id/edit", LogLive.Index, :edit
+
+    live "/logs/:id", LogLive.Show, :show
+    live "/logs/:id/show/edit", LogLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

@@ -12,28 +12,36 @@
   <%= for habit <- @habits do %>
     <div id="habit-<%= habit.id %>" class="flex w-full">
       <div class="relative w-full pt-1">
-        <div class="relative flex h-24 mb-4 text-xs bg-gray-200 bg-opacity-50 rounded-full">
+        <div class="relative flex h-24 mb-4 text-xs bg-gray-200 bg-opacity-50 rounded-lg">
           <div class="absolute z-10 text-4xl font-semibold inset-4"><%= habit.name %></div>
           <%= for bar <- 1..habit.iterations - 1 do %>
             <span style="position:absolute; margin-left:<%= bar / habit.iterations * 100  %>%" class="w-0.5 h-full bg-gray-600 opacity-50"></span>
           <% end %>
-          <div style="width:<%= (2/habit.iterations) * 100 %>%" class="flex flex-col justify-center text-center text-white bg-red-500 rounded rounded-l-full shadow-none shadow-red progress-bar whitespace-nowrap"></div>
+          <%= if length(habit.logs)/habit.iterations < 1/3 do %>
+            <%# Render red, else yellow, else green %>
+          <% end %>
+          <div style="width:<%= (length(habit.logs)/habit.iterations) * 100 %>%" class="flex flex-col justify-center text-center text-white bg-red-500 rounded rounded-l-lg shadow-none shadow-red progress-bar whitespace-nowrap"></div>
           <div style="width:<%= (0/habit.iterations) * 100 %>%" class="flex flex-col justify-center text-center text-white bg-yellow-500 rounded shadow-none progress-bar whitespace-nowrap"></div>
           <div style="width:<%= (0/habit.iterations) * 100 %>%" class="flex flex-col justify-center text-center text-white bg-green-500 rounded shadow-none progress-bar whitespace-nowrap"></div>
         </div>
       </div>
 
       <div>
+        <button phx-click="add_log" phx-value-id="<%= habit.id %>" type="button" class="text-white duration-150 transform hover:scale-110">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </button>
         <span><%= live_redirect "Show", to: Routes.habit_show_path(@socket, :show, habit) %></span>
         <span><%= live_patch "Edit", to: Routes.habit_index_path(@socket, :edit, habit) %></span>
-        <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: habit.id, data: [confirm: "Are you sure?"] %></span>
+        <span><%= link "Remove", to: "#", phx_click: "delete", phx_value_id: habit.id, data: [confirm: "Are you sure?"] %></span>
       </div>
     </div>
   <% end %>
 </div>
 
 <div class="flex pt-4">
-<%= live_patch "New Habit", to: Routes.habit_index_path(@socket, :new), class: "px-5 py-3 text-xl font-semibold text-center duration-150 transform bg-red-500 border border-red-600 rounded hover:bg-red-600 hover:border-red-700 shadow-red" %>
+<%= live_patch "New Habit", to: Routes.habit_index_path(@socket, :new), class: "px-5 py-3 text-xl font-semibold text-center duration-150 transform bg-red-500 border border-red-600 rounded hover:bg-red-600 hover:border-red-700 shadow-red-500-3xl" %>
 </div>
 
 <style>

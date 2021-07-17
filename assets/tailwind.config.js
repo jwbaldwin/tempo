@@ -1,3 +1,5 @@
+const tailwindcss = require("tailwindcss");
+
 module.exports = {
   purge: [
     "../**/*.html.eex",
@@ -9,9 +11,6 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      boxShadow: {
-        red: '0 4px 1.25rem #da393f',
-      },
     },
   },
   variants: {
@@ -19,7 +18,8 @@ module.exports = {
      scale: ['hover'] 
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('./shadowpaletteplugin'),
+  ],
 }
-
-// TODO: Add in the configured box shadows using a plugin

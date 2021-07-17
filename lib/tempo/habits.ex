@@ -14,6 +14,7 @@ defmodule Tempo.Habits do
   def list_habits(%User{} = user) do
     Habit
     |> where(user_id: ^user.id)
+    |> preload(:logs)
     |> Repo.all()
   end
 

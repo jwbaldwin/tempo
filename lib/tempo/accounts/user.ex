@@ -10,6 +10,7 @@ defmodule Tempo.Accounts.User do
     field :confirmed_at, :naive_datetime
 
     has_many :habits, Tempo.Habits.Habit
+    has_many :logs, Tempo.Logs.Log
 
     timestamps()
   end
