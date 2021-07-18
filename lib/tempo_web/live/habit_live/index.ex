@@ -2,8 +2,10 @@ defmodule TempoWeb.HabitLive.Index do
   use TempoWeb, :live_view
 
   alias Tempo.Logs
+  alias Tempo.Logs.Log
   alias Tempo.Habits
   alias Tempo.Habits.Habit
+  alias Phoenix.LiveView.Socket
 
   @impl true
   def mount(_params, session, socket) do
@@ -46,12 +48,29 @@ defmodule TempoWeb.HabitLive.Index do
     save_log(socket, habit_id)
   end
 
+  def handle_event("remove_log", %{"id" => habit_id}, socket) do
+    delete_log(socket, habit_id)
+  end
+
   defp save_log(socket, habit_id) do
     user = get_current_user(socket)
 
     case Logs.create_log(%{user_id: user.id, habit_id: habit_id}) do
-      # TODO: Do I need to refetch all of the habits? no, so how do I update just the logs of the habit I changed
       {:ok, _log} ->
+        {:noreply, assign(socket, :habits, list_habits(socket))}
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        {:noreply, assign(socket, changeset: changeset)}
+    end
+  end
+
+  defp delete_log(socket, habit_id) do
+    socket
+    |> get_logs_from_habit(habit_id)
+    |> get_most_recent_log()
+    |> Logs.delete_log()
+    |> case do
+      {:ok, _} ->
         {:noreply, assign(socket, :habits, list_habits(socket))}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -64,7 +83,22 @@ defmodule TempoWeb.HabitLive.Index do
     |> Habits.list_habits()
   end
 
-  defp get_current_user(%Phoenix.LiveView.Socket{assigns: %{current_user: user}} = _socket) do
-    user
+  defp get_current_user(%Socket{assigns: %{current_user: user}} = _socket), do: user
+
+  defp get_logs_from_habit(%Socket{assigns: %{habits: habits}} = _socket, habit_id)
+       when is_list(habits) do
+    habit =
+      habits
+      |> Enum.find(&(&1.id == String.to_integer(habit_id)))
+
+    habit.logs
+  end
+
+  defp get_most_recent_log([%Log{} = log]), do: log
+
+  defp get_most_recent_log(logs) when is_list(logs) do
+    logs
+    |> Enum.sort_by(& &1.inserted_at, {:desc, Date})
+    |> Enum.at(0)
   end
 end

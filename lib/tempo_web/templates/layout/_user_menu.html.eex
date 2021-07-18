@@ -1,10 +1,21 @@
 <ul>
-<%= if @current_user do %>
-  <li><%= @current_user.email %></li>
-  <li><%= link "Settings", to: Routes.user_settings_path(@conn, :edit) %></li>
-  <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete %></li>
-<% else %>
-  <li><%= link "Register", to: Routes.user_registration_path(@conn, :new) %></li>
-  <li><%= link "Log in", to: Routes.user_session_path(@conn, :new) %></li>
-<% end %>
 </ul>
+
+<div class="relative">
+  <div class="px-4 mx-auto max-w-7xl sm:px-6">
+    <div class="flex items-center justify-between py-6 md:justify-start md:space-x-10">
+      <nav class="hidden space-x-10 md:flex">
+        <p class="text-3xl font-semibold">Tempo</p>
+      </nav>
+      <div class="items-center justify-end hidden md:flex md:flex-1 lg:w-0">
+      <%= if @current_user do %>
+        <%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class: "text-base font-medium text-gray-500 whitespace-nowrap hover:text-gray-400" %>
+        <%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "ml-4 md-red-btn shadow-red-500-3xl" %>
+      <% else %>
+        <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "text-base font-medium text-gray-500 whitespace-nowrap hover:text-gray-900" %>
+        <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "inline-flex items-center justify-center px-4 py-2 ml-8 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-indigo-700" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

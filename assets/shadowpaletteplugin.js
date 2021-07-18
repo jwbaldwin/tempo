@@ -38,7 +38,7 @@ function hexToRgb(hex) {
         boxShadow: `0 25px 50px -12px rgba(${rgb}, 0.25)`
     }
     obj[`.shadow-${nameWithDash}3xl`] = {
-        boxShadow: `0 4px 1.25rem 0 rgba(${rgb}, 0.8)`
+        boxShadow: `0 4px 1.15rem 0 rgba(${rgb}, 0.8)`
     }
     obj[`.shadow-${nameWithDash}inner`] = {
         boxShadow: `inset 0 2px 4px 0 rgba(${rgb}, 0.06)`

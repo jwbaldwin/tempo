@@ -2,3 +2,11 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+.big-red-btn {
+    @apply px-5 py-3 text-xl font-semibold text-center duration-150 transform bg-red-500 border border-red-600 rounded hover:bg-red-600 hover:border-red-700;
+}
+
+.md-red-btn {
+    @apply px-3 py-2 text-base font-semibold text-center duration-150 transform bg-red-500 border border-red-600 rounded hover:bg-red-600 hover:border-red-700;
+}
