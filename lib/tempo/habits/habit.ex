@@ -7,7 +7,7 @@ defmodule Tempo.Habits.Habit do
     field :name, :string
 
     belongs_to :user, Tempo.Accounts.User
-    has_many :logs, Tempo.Logs.Log
+    has_many :logs, Tempo.Logs.Log, on_delete: :delete_all
 
     timestamps()
   end
