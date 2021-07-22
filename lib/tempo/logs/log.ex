@@ -6,7 +6,7 @@ defmodule Tempo.Logs.Log do
     belongs_to :user, Tempo.Accounts.User
     belongs_to :habit, Tempo.Habits.Habit
 
-    timestamps()
+    timestamps(type: :utc_datetime)
   end
 
   @doc false

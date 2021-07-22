@@ -6,11 +6,24 @@ defmodule TempoWeb.HabitLive.Index do
   alias Tempo.Habits
   alias Tempo.Habits.Habit
   alias Phoenix.LiveView.Socket
+  alias Tempo.TimeHelpers
 
   @impl true
   def mount(_params, session, socket) do
     socket = assign_defaults(session, socket)
-    {:ok, assign(socket, :habits, list_habits(socket))}
+
+    {:ok,
+     socket
+     |> assign(:habits, list_habits(socket))
+     |> assign_day_info()}
+  end
+
+  defp assign_day_info(socket) do
+    assign(socket, %{
+      current_day: TimeHelpers.current_day(),
+      current_time: TimeHelpers.current_time(),
+      greeting: TimeHelpers.greeting_for_time_of_day()
+    })
   end
 
   @impl true

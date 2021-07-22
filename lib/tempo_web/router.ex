@@ -18,7 +18,7 @@ defmodule TempoWeb.Router do
   end
 
   scope "/", TempoWeb do
-    pipe_through :browser
+    pipe_through [:browser, :require_authenticated_user]
 
     # live "/", PageLive, :index
     live "/", HabitLive.Index, :index
