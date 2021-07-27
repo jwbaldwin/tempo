@@ -22,6 +22,7 @@ defmodule TempoWeb.HabitLive.Index do
     assign(socket, %{
       current_day: TimeHelpers.current_day(),
       current_time: TimeHelpers.current_time(),
+      days_until_end_of_week: TimeHelpers.day_til_end(:week),
       greeting: TimeHelpers.greeting_for_time_of_day()
     })
   end

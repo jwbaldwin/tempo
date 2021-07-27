@@ -4,37 +4,37 @@ defmodule Tempo.TempoHelpersTest do
   alias Tempo.TimeHelpers
 
   describe "greeting_for_time_of_day/0" do
-    test "returns an early greeting for 4am" do
+    test "4am returns an early greeting" do
       four_am = Timex.DateTime.new!(~D[2021-01-01], ~T[04:00:00.000], "America/New_York")
 
       assert TimeHelpers.greeting_for_time_of_day(four_am) == "Good morning"
     end
 
-    test "returns an early greeting for 10am" do
+    test "10am returns an early greeting" do
       ten_am = Timex.DateTime.new!(~D[2021-01-01], ~T[10:00:00.000], "America/New_York")
 
       assert TimeHelpers.greeting_for_time_of_day(ten_am) == "Good morning"
     end
 
-    test "returns an middle greeting for 11am" do
+    test "11am returns an middle greeting" do
       eleven_am = Timex.DateTime.new!(~D[2021-01-01], ~T[11:00:00.000], "America/New_York")
 
       assert TimeHelpers.greeting_for_time_of_day(eleven_am) == "Good afternoon"
     end
 
-    test "returns an middle greeting for 5pm" do
+    test "5pm returns an middle greeting" do
       five_pm = Timex.DateTime.new!(~D[2021-01-01], ~T[17:00:00.000], "America/New_York")
 
       assert TimeHelpers.greeting_for_time_of_day(five_pm) == "Good afternoon"
     end
 
-    test "returns an late greeting for 6pm" do
+    test "6pm returns an late greeting" do
       six_pm = Timex.DateTime.new!(~D[2021-01-01], ~T[18:00:00.000], "America/New_York")
 
       assert TimeHelpers.greeting_for_time_of_day(six_pm) == "Good evening"
     end
 
-    test "returns an late greeting for 3am" do
+    test "3am returns an late greeting" do
       three_am = Timex.DateTime.new!(~D[2021-01-01], ~T[03:00:00.000], "America/New_York")
 
       assert TimeHelpers.greeting_for_time_of_day(three_am) == "Good evening"

@@ -7,54 +7,49 @@
     return_to: Routes.habit_index_path(@socket, :index),
     current_user: assigns.current_user %>
 <% end %>
-
-<div>
-<p><%= @greeting %>!</p>
-<p><%= @current_time %></p>
-<p><%= @current_day %></p>
-</div>
-<div id="habits" class="mt-8">
+<h1 class="text-5xl font-semibold prose-2xl"><%= @greeting %>!</h1>
+<h3 class="prose-xl">It's currently <%= @current_day %>, the week ends in <%= @days_until_end_of_week %> days!</h3>
+<div id="habits" class="mt-8 space-y-8">
   <%= for habit <- @habits do %>
     <div id="habit-<%= habit.id %>" class="flex w-full">
       <div class="relative w-full pt-1">
-        <div class="inline-block px-4 py-1 -mb-1 text-3xl font-semibold bg-gray-800 border-4 inset-4 rounded-t-xl"><%= habit.name %></div>
-        <div class="flex w-full">
-          <div class="relative flex w-full h-24 mb-4 overflow-hidden text-xs bg-gray-600 border-4 rounded-bl-3xl bar">
-            <%= for bar <- 1..habit.iterations - 1 do %>
-              <span style="position:absolute; margin-left:<%= bar / habit.iterations * 100  %>%" class="w-1 h-full bg-gray-400"></span>
-            <% end %>
-              <div style="width:<%= (length(habit.logs)/habit.iterations) * 100 %>%" class="flex flex-col justify-center text-center text-white duration-200 ease-in-out bg-red-500 bar-content shadow-red whitespace-nowrap"></div>
-          </div>
-          <div class="flex flex-col w-24 h-full">
-            <button phx-click="add_log" phx-value-id="<%= habit.id %>" type="button" class="h-12 text-white duration-150 transform bg-green-500 border-4 border-l-0 border-b-1 rounded-tr-xl hover:scale-y-105">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </button>
-            <%= if length(habit.logs) != 0 do %>
-              <button phx-click="remove_log" phx-value-id="<%= habit.id %>" type="button" class="h-12 text-white duration-150 transform bg-red-500 border-4 border-l-0 border-t-1 rounded-br-xl hover:scale-y-105">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </button>
-            <% end %>
-          </div>
+        <div class="inline-block pb-4 text-3xl font-semibold"><%= habit.name %></div>
+        <div x-data="{ iterations: <%= habit.iterations %> }" class="flex">
+          <%= for iteration <- 1..(habit.iterations) do %>
+            <div x-data="{ iteration: <%= iteration %> }" class="flex items-center hover:animate-pulse">
+              <div :class="<%= iteration <= length(habit.logs) %> ? 'bg-red-500 border-red-600' : 'bg-gray-500 border-gray-600'" class="w-12 h-12 transition-all duration-300 border-2 rounded-md progress-box"></div>
+              <template x-if="iteration !== iterations">
+                <div :class="<%= iteration <= length(habit.logs) %> ? 'bg-red-500' : 'bg-gray-500'" class="w-16 h-2 transition-all duration-300 transform border-t border-b border-gray-700"></div>
+              </template>
+            </div>
+          <% end %>
         </div>
       </div>
-
-    </div>
-    <div>
-      <span><%= live_redirect "Show", to: Routes.habit_show_path(@socket, :show, habit) %></span>
-      <span><%= live_patch "Edit", to: Routes.habit_index_path(@socket, :edit, habit) %></span>
-      <span><%= link "Remove", to: "#", phx_click: "delete", phx_value_id: habit.id, data: [confirm: "Are you sure?"] %></span>
+      <div class="flex flex-col w-24 h-full">
+        <button phx-click="add_log" phx-value-id="<%= habit.id %>" type="button" class="h-12 text-white duration-150 transform bg-green-500 border-4 border-l-0 border-b-1 rounded-tr-xl hover:scale-y-105">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </button>
+        <%= if length(habit.logs) != 0 do %>
+          <button phx-click="remove_log" phx-value-id="<%= habit.id %>" type="button" class="h-12 text-white duration-150 transform bg-red-500 border-4 border-l-0 border-t-1 rounded-br-xl hover:scale-y-105">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </button>
+        <% end %>
+      </div>
+      <div>
+        <span><%= live_redirect "Show", to: Routes.habit_show_path(@socket, :show, habit) %></span>
+        <span><%= live_patch "Edit", to: Routes.habit_index_path(@socket, :edit, habit) %></span>
+        <span><%= link "Remove", to: "#", phx_click: "delete", phx_value_id: habit.id, data: [confirm: "Are you sure?"] %></span>
+      </div>
     </div>
   <% end %>
 </div>
-
-<div class="flex pt-4">
-<%= live_patch "New Habit", to: Routes.habit_index_path(@socket, :new), class: "big-red-btn shadow-red-500-3xl" %>
+<div class="flex pt-24">
+  <%= live_patch "New Habit", to: Routes.habit_index_path(@socket, :new), class: "big-red-btn shadow-red-500-3xl" %>
 </div>
-
 <style>
   .increment-buttons {
   }

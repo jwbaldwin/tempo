@@ -53,4 +53,15 @@ defmodule Tempo.TimeHelpers do
   defp is_afternoon(hours_left) do
     hours_left < 13 && hours_left >= 6
   end
+
+  def days_til_end(:week) do
+    # implement
+  end
+
+  def days_til_end(:month) do
+  end
+
+  def days_til_end(_) do
+    IO.puts("This method needs an atom of either :week or :month")
+  end
 end
