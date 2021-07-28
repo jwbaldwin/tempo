@@ -10,6 +10,8 @@ defmodule Tempo.TimeHelpers do
     late: "Good evening"
   }
 
+  @weekstart :sun
+
   @doc """
   Returns the day of the week as an atom
   > current_day()
@@ -54,14 +56,23 @@ defmodule Tempo.TimeHelpers do
     hours_left < 13 && hours_left >= 6
   end
 
-  def days_til_end(:week) do
-    # implement
+  def days_to_end(:week) do
+    end_of_week =
+      current_time()
+      |> Timex.end_of_week(@weekstart)
+
+    Timex.diff(end_of_week, current_time(), :days)
   end
 
-  def days_til_end(:month) do
+  def days_to_end(:month) do
+    end_of_month =
+      current_time()
+      |> Timex.end_of_month()
+
+    Timex.diff(end_of_month, current_time(), :hours)
   end
 
-  def days_til_end(_) do
+  def days_to_end(_) do
     IO.puts("This method needs an atom of either :week or :month")
   end
 end

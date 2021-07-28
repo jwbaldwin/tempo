@@ -7,42 +7,50 @@
     return_to: Routes.habit_index_path(@socket, :index),
     current_user: assigns.current_user %>
 <% end %>
-<h1 class="text-5xl font-semibold prose-2xl"><%= @greeting %>!</h1>
-<h3 class="prose-xl">It's currently <%= @current_day %>, the week ends in <%= @days_until_end_of_week %> days!</h3>
+<h1 class="mt-8 text-5xl font-semibold prose-2xl"><%= @greeting %>!</h1>
+<p class="leading-10 prose-xl text-gray-400">It's currently <%= @current_day %>, the week ends in <%= @days_until_end_of_week %> days</p>
 <div id="habits" class="mt-8 space-y-8">
   <%= for habit <- @habits do %>
-    <div id="habit-<%= habit.id %>" class="flex w-full">
-      <div class="relative w-full pt-1">
-        <div class="inline-block pb-4 text-3xl font-semibold"><%= habit.name %></div>
-        <div x-data="{ iterations: <%= habit.iterations %> }" class="flex">
+    <div id="habit-<%= habit.id %>" class="grid w-full grid-cols-12">
+      <div class="col-span-12 pb-4 text-3xl font-semibold"><%= habit.name %></div>
+      <div class="relative col-span-11 pt-1">
+        <div x-data="{ iterations: <%= habit.iterations %> }" class="flex w-full">
           <%= for iteration <- 1..(habit.iterations) do %>
-            <div x-data="{ iteration: <%= iteration %> }" class="flex items-center hover:animate-pulse">
+            <div x-data="{ iteration: <%= iteration %> }" :class="iteration !== iterations ? 'w-full' : ''" class="flex items-center hover:animate-pulse">
               <div :class="<%= iteration <= length(habit.logs) %> ? 'bg-red-500 border-red-600' : 'bg-gray-500 border-gray-600'" class="w-12 h-12 transition-all duration-300 border-2 rounded-md progress-box"></div>
               <template x-if="iteration !== iterations">
-                <div :class="<%= iteration <= length(habit.logs) %> ? 'bg-red-500' : 'bg-gray-500'" class="w-16 h-2 transition-all duration-300 transform border-t border-b border-gray-700"></div>
+                <div :class="<%= iteration <= length(habit.logs) %> ? 'bg-red-500' : 'bg-gray-500'" class="w-full h-2 transition-all duration-300 transform border-t border-b border-gray-700"></div>
               </template>
             </div>
           <% end %>
         </div>
       </div>
-      <div class="flex flex-col w-24 h-full">
-        <button phx-click="add_log" phx-value-id="<%= habit.id %>" type="button" class="h-12 text-white duration-150 transform bg-green-500 border-4 border-l-0 border-b-1 rounded-tr-xl hover:scale-y-105">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <div class="flex col-span-1 justify-evenly" x-data="{ disableAdd: <%= length(habit.logs) == habit.iterations %>, disableRem: <%= length(habit.logs) == 0 %> }">
+        <button x-show="!disableAdd" phx-click="add_log" phx-value-id="<%= habit.id %>" type="button" class="h-12 text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
           </svg>
         </button>
-        <%= if length(habit.logs) != 0 do %>
-          <button phx-click="remove_log" phx-value-id="<%= habit.id %>" type="button" class="h-12 text-white duration-150 transform bg-red-500 border-4 border-l-0 border-t-1 rounded-br-xl hover:scale-y-105">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </button>
-        <% end %>
+        <button x-show="disableAdd" type="button" class="h-12 text-gray-500 cursor-not-allowed">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <button x-show="!disableRem" phx-click="remove_log" phx-value-id="<%= habit.id %>" type="button" :class="disableRem ? 'text-gray-500 cursor-not-allowed' : 'text-white'" class="h-12">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <button x-show="disableRem" type="button" class="h-12 text-gray-500 cursor-not-allowed">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+          </svg>
+        </button>
       </div>
-      <div>
-        <span><%= live_redirect "Show", to: Routes.habit_show_path(@socket, :show, habit) %></span>
-        <span><%= live_patch "Edit", to: Routes.habit_index_path(@socket, :edit, habit) %></span>
-        <span><%= link "Remove", to: "#", phx_click: "delete", phx_value_id: habit.id, data: [confirm: "Are you sure?"] %></span>
+      <div class="col-span-3 pt-4 space-x-2">
+        <span><%= live_redirect "Show", to: Routes.habit_show_path(@socket, :show, habit), class: "text-white hover:text-red-500" %></span>
+        <span><%= live_patch "Edit", to: Routes.habit_index_path(@socket, :edit, habit), class: "text-white hover:text-red-500"%></span>
+        <span><%= link "Remove", to: "#", phx_click: "delete", phx_value_id: habit.id, data: [confirm: "Are you sure?"], class: "text-white hover:text-red-500"%></span>
       </div>
     </div>
   <% end %>
