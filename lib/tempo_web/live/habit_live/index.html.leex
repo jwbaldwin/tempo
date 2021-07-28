@@ -15,11 +15,17 @@
       <div class="col-span-12 pb-4 text-3xl font-semibold"><%= habit.name %></div>
       <div class="relative col-span-11 pt-1">
         <div x-data="{ iterations: <%= habit.iterations %> }" class="flex w-full">
-          <%= for iteration <- 1..(habit.iterations) do %>
+          <%= for log <- habit.logs do %>
+            <div class="flex items-center w-full hover:animate-pulse">
+              <div class="w-12 h-12 transition-all duration-300 bg-red-500 border-2 border-red-600 rounded-md progress-box"></div>
+              <div class="w-full h-2 transition-all duration-300 transform bg-red-500 border-t border-b border-red-600"></div>
+            </div>
+          <% end %>
+          <%= for iteration <- (length(habit.logs) + 1)..habit.iterations do %>
             <div x-data="{ iteration: <%= iteration %> }" :class="iteration !== iterations ? 'w-full' : ''" class="flex items-center hover:animate-pulse">
-              <div :class="<%= iteration <= length(habit.logs) %> ? 'bg-red-500 border-red-600' : 'bg-gray-500 border-gray-600'" class="w-12 h-12 transition-all duration-300 border-2 rounded-md progress-box"></div>
+              <div class="w-12 h-12 transition-all duration-300 bg-gray-500 border-2 border-gray-600 rounded-md progress-box"></div>
               <template x-if="iteration !== iterations">
-                <div :class="<%= iteration <= length(habit.logs) %> ? 'bg-red-500' : 'bg-gray-500'" class="w-full h-2 transition-all duration-300 transform border-t border-b border-gray-700"></div>
+                <div class="w-full h-2 transition-all duration-300 transform bg-gray-500 border-t border-b border-gray-700"></div>
               </template>
             </div>
           <% end %>
