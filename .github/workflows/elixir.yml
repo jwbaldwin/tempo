@@ -40,6 +40,10 @@ jobs:
   format_and_lint:
     name: Format and Lint
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        elixir: [1.12]
+        otp: [24.0.2]
     needs: build
     steps:
       - uses: actions/checkout@v2
@@ -63,6 +67,10 @@ jobs:
   test:
     name: Static Code Analysis
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        elixir: [1.12]
+        otp: [24.0.2]
     needs: build
     steps:
       - uses: actions/checkout@v2
