@@ -7,18 +7,30 @@ defmodule Tempo.Habits do
   alias Tempo.Repo
   alias Tempo.Accounts.User
   alias Tempo.Habits.Habit
+  alias Tempo.Logs
+
+  @allowed_ranges [:year, :month, :week, :day]
 
   @doc """
-  Retrievs the user's list of habits
+  Retrieve the user's list of habits
   """
-  def list_habits(%User{} = user) do
+  def list_habits(%User{id: user_id} = _user) do
     Habit
-    |> where(user_id: ^user.id)
+    |> where(user_id: ^user_id)
     |> preload(:logs)
     |> Repo.all()
   end
 
-  def list_habits, do: Repo.all(Habit)
+  @doc """
+  Retrieve the user's list of habits with all logs in the current week
+  """
+  def list_habits_with_range(%User{id: user_id} = _user, range \\ :week)
+      when range in @allowed_ranges do
+    Habit
+    |> where(user_id: ^user_id)
+    |> preload(logs: ^Logs.base_logs_range_query(range))
+    |> Repo.all()
+  end
 
   @doc """
   Gets a single habit.

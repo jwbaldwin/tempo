@@ -81,8 +81,7 @@ defmodule TempoWeb.HabitLive.Index do
   defp delete_log(socket, habit_id) do
     socket
     |> get_logs_from_habit(habit_id)
-    |> get_most_recent_log()
-    |> Logs.delete_log()
+    |> Logs.delete_most_recent_log()
     |> case do
       {:ok, _} ->
         {:noreply, assign(socket, :habits, list_habits(socket))}
@@ -94,10 +93,8 @@ defmodule TempoWeb.HabitLive.Index do
 
   defp list_habits(socket) do
     get_current_user(socket)
-    |> Habits.list_habits()
+    |> Habits.list_habits_with_range(:week)
   end
-
-  defp get_current_user(%Socket{assigns: %{current_user: user}} = _socket), do: user
 
   defp get_logs_from_habit(%Socket{assigns: %{habits: habits}} = _socket, habit_id)
        when is_list(habits) do
@@ -108,11 +105,5 @@ defmodule TempoWeb.HabitLive.Index do
     habit.logs
   end
 
-  defp get_most_recent_log([%Log{} = log]), do: log
-
-  defp get_most_recent_log(logs) when is_list(logs) do
-    logs
-    |> Enum.sort_by(& &1.inserted_at, {:desc, Date})
-    |> Enum.at(0)
-  end
+  defp get_current_user(%Socket{assigns: %{current_user: user}} = _socket), do: user
 end

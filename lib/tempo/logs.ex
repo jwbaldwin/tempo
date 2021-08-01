@@ -9,30 +9,32 @@ defmodule Tempo.Logs do
   alias Tempo.Logs.Log
   alias Tempo.Accounts.User
   alias Tempo.Habits.Habit
+  alias Tempo.TimeHelpers
 
   @doc """
-  Returns the list of logs.
-
-  ## Examples
-
-      iex> list_logs()
-      [%Log{}, ...]
-
+  List the logs for a user
   """
-  def list_logs do
-    Repo.all(Log)
-  end
-
   def list_logs_by_user(%User{} = user) do
     Log
     |> where(user_id: ^user.id)
     |> Repo.all()
   end
 
+  @doc """
+  List all logs for a habit
+  """
   def list_logs_by_habit(%User{} = user, %Habit{} = habit) do
     Log
     |> where(habit_id: ^habit.id, user_id: ^user.id)
     |> Repo.all()
+  end
+
+  def base_logs_range_query(range) do
+    start_of_range = TimeHelpers.start_of_range(range)
+    end_of_range = TimeHelpers.end_of_range(range)
+
+    from l in Log,
+      where: l.inserted_at >= ^start_of_range and l.inserted_at <= ^end_of_range
   end
 
   @doc """
@@ -101,6 +103,20 @@ defmodule Tempo.Logs do
   """
   def delete_log(%Log{} = log) do
     Repo.delete(log)
+  end
+
+  def delete_most_recent_log(logs) when is_list(logs) do
+    logs
+    |> get_most_recent_log()
+    |> delete_log()
+  end
+
+  defp get_most_recent_log([%Log{} = log]), do: log
+
+  defp get_most_recent_log(logs) when is_list(logs) do
+    logs
+    |> Enum.sort_by(& &1.inserted_at, {:desc, Date})
+    |> Enum.at(0)
   end
 
   @doc """

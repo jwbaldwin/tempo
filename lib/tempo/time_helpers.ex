@@ -75,4 +75,42 @@ defmodule Tempo.TimeHelpers do
   def days_to_end(_) do
     IO.puts("This method needs an atom of either :week or :month")
   end
+
+  @doc """
+  Returns the date time for the start of some range in [:year, :month, :week, :day]
+  """
+  def start_of_range(range) do
+    case range do
+      :year ->
+        Timex.beginning_of_year(Timex.now())
+
+      :month ->
+        Timex.beginning_of_month(Timex.now())
+
+      :week ->
+        Timex.beginning_of_week(Timex.now(), :sun)
+
+      :day ->
+        Timex.beginning_of_day(Timex.now())
+    end
+  end
+
+  @doc """
+  Returns the date time for the end of some range in [:year, :month, :week, :day]
+  """
+  def end_of_range(range) do
+    case range do
+      :year ->
+        Timex.end_of_year(Timex.now())
+
+      :month ->
+        Timex.end_of_month(Timex.now())
+
+      :week ->
+        Timex.end_of_week(Timex.now(), :sun)
+
+      :day ->
+        Timex.end_of_day(Timex.now())
+    end
+  end
 end
