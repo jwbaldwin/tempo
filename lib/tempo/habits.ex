@@ -37,10 +37,6 @@ defmodule Tempo.Habits do
   """
   def get_habit!(id), do: Repo.get!(Habit, id)
 
-  @spec create_habit(
-          %Tempo.Accounts.User{optional(any) => any},
-          :invalid | %{optional(:__struct__) => none, optional(atom | binary) => any}
-        ) :: any
   @doc """
   Creates a habit.
   """
