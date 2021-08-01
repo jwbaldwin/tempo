@@ -40,6 +40,7 @@ jobs:
   format_and_lint:
     name: Format and Lint
     runs-on: ubuntu-latest
+    continue-on-error: true
     strategy:
       matrix:
         elixir: [1.12]
@@ -65,13 +66,24 @@ jobs:
         run: mix credo --strict
 
   test:
-    name: Static Code Analysis
+    name: Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
         elixir: [1.12]
         otp: [24.0.2]
     needs: build
+    services:
+      db:
+        image: postgres:11
+        ports: ["5432:5432"]
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v2
       - name: Set up Elixir
