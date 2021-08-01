@@ -10,6 +10,5 @@ defmodule Tempo.Repo.Migrations.CreateHabits do
 
       timestamps()
     end
-
   end
 end
