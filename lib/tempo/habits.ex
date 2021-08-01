@@ -42,7 +42,6 @@ defmodule Tempo.Habits do
   """
   def create_habit(%User{} = user, params) do
     Ecto.build_assoc(user, :habits)
-    |> IO.inspect()
     |> Habit.changeset(params)
     |> Repo.insert()
   end
