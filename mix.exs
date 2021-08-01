@@ -50,7 +50,8 @@ defmodule Tempo.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:timex, "~> 3.7"},
       {:credo, "~> 1.5.5", only: [:dev, :test], runtime: false},
-      {:phx_gen_auth, "~> 0.7.0", only: [:dev], runtime: false}
+      {:phx_gen_auth, "~> 0.7.0", only: [:dev], runtime: false},
+      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false}
     ]
   end
 

@@ -112,6 +112,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8.1
+
       - name: Deploy
         uses: mhanberg/gigalixir-action@v0.4.0
         with:
@@ -119,4 +123,4 @@ jobs:
           GIGALIXIR_PASSWORD: ${{ secrets.GIGALIXIR_PASSWORD }}
           GIGALIXIR_APP: my-tempo
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          MIGRATIONS: false
+          MIGRATIONS: true
