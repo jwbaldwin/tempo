@@ -67,6 +67,7 @@ jobs:
 
   test:
     name: Test
+    continue-on-error: true
     runs-on: ubuntu-latest
     strategy:
       matrix:
