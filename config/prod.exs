@@ -10,8 +10,9 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :tempo, TempoWeb.Endpoint,
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  url: [host: nil, port: 443],
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  check_origin: ["https://tempo.jwbaldwin.com", "https://mytempo.app"]
 
 # Do not print debug messages in production
 config :logger, level: :info
