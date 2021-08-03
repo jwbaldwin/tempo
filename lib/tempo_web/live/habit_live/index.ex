@@ -36,19 +36,18 @@ defmodule TempoWeb.HabitLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Habit")
+    |> assign(:page_title, "Edit Habit - Tempo")
     |> assign(:habit, Habits.get_habit!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Habit")
+    |> assign(:page_title, "New Habit - Tempo")
     |> assign(:habit, %Habit{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Habits")
     |> assign(:habit, nil)
   end
 

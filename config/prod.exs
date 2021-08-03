@@ -12,7 +12,7 @@ use Mix.Config
 config :tempo, TempoWeb.Endpoint,
   url: [host: nil, port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  check_origin: ["https://tempo.jwbaldwin.com", "https://mytempo.app"]
+  check_origin: ["https://tempo.jwbaldwin.com", "https://mytempo.app", "https://www.mytempo.app"]
 
 # Do not print debug messages in production
 config :logger, level: :info

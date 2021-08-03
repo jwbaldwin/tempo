@@ -15,7 +15,7 @@
       <div class="col-span-12 pb-4 text-3xl font-semibold"><%= habit.name %></div>
       <div class="relative col-span-11 pt-1">
         <div x-data="{ iterations: <%= habit.iterations %>  }" class="flex w-full">
-          <%= for {log, i} <- Enum.with_index(habit.logs, 1) do %>
+          <%= for { _log, i} <- Enum.with_index(habit.logs, 1) do %>
             <div :class="<%= i %> !== iterations ? 'w-full' : ''" class="flex items-center hover:animate-pulse">
               <div class="w-12 h-12 transition-all duration-300 bg-red-500 border-2 border-red-600 rounded-md progress-box"></div>
               <%= if i != habit.iterations do %>
