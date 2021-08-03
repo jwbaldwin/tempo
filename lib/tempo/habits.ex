@@ -4,10 +4,10 @@ defmodule Tempo.Habits do
   """
 
   import Ecto.Query, warn: false
-  alias Tempo.Repo
   alias Tempo.Accounts.User
   alias Tempo.Habits.Habit
   alias Tempo.Logs
+  alias Tempo.Repo
 
   @allowed_ranges [:year, :month, :week, :day]
 

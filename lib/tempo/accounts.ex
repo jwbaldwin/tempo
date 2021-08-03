@@ -4,8 +4,9 @@ defmodule Tempo.Accounts do
   """
 
   import Ecto.Query, warn: false
+
+  alias Tempo.Accounts.{User, UserNotifier, UserToken}
   alias Tempo.Repo
-  alias Tempo.Accounts.{User, UserToken, UserNotifier}
 
   ## Database getters
 

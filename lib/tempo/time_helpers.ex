@@ -17,14 +17,14 @@ defmodule Tempo.TimeHelpers do
   > current_day()
   >> Monday
   """
-  def current_day() do
+  def current_day do
     Timex.local() |> Timex.weekday() |> Timex.day_name()
   end
 
   @doc """
   Returns the current time with timezone information
   """
-  def current_time() do
+  def current_time do
     Timex.local()
   end
 
@@ -41,7 +41,7 @@ defmodule Tempo.TimeHelpers do
     end
   end
 
-  def greeting_for_time_of_day() do
+  def greeting_for_time_of_day do
     current_time()
     |> greeting_for_time_of_day()
   end
@@ -72,7 +72,7 @@ defmodule Tempo.TimeHelpers do
     Timex.diff(end_of_month, current_time(), :hours)
   end
 
-  def days_to_end(_) do
+  def days_to_end do
     IO.puts("This method needs an atom of either :week or :month")
   end
 

@@ -1,4 +1,5 @@
 defmodule Tempo.Habits.Habit do
+  @moduledoc false
   use Ecto.Schema
   import Ecto.Changeset
 

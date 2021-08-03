@@ -1,4 +1,7 @@
 defmodule TempoWeb.LogLive.Index do
+  @moduledoc """
+  Logs
+  """
   use TempoWeb, :live_view
 
   alias Tempo.Logs

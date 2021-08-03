@@ -1,4 +1,7 @@
 defmodule TempoWeb.HabitLive.Show do
+  @moduledoc """
+  Displays more information about a habit
+  """
   use TempoWeb, :live_view
 
   alias Tempo.Habits

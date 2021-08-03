@@ -1,4 +1,5 @@
 defmodule Tempo.Logs.Log do
+  @moduledoc false
   use Ecto.Schema
   import Ecto.Changeset
 

@@ -1,4 +1,7 @@
 defmodule TempoWeb.LiveHelpers do
+  @moduledoc """
+  A set of helpers, one is for displaying modals and the other is for supplying user info into an assigns
+  """
   import Phoenix.LiveView
   import Phoenix.LiveView.Helpers
   alias TempoWeb.Router.Helpers, as: Routes

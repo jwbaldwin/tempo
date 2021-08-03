@@ -6,9 +6,9 @@ defmodule Tempo.Logs do
   import Ecto.Query, warn: false
   alias Tempo.Repo
 
-  alias Tempo.Logs.Log
   alias Tempo.Accounts.User
   alias Tempo.Habits.Habit
+  alias Tempo.Logs.Log
   alias Tempo.TimeHelpers
 
   @doc """

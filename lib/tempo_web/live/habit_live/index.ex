@@ -1,11 +1,13 @@
 defmodule TempoWeb.HabitLive.Index do
+  @moduledoc """
+  The main module to support the home view of habits and logs
+  """
   use TempoWeb, :live_view
 
-  alias Tempo.Logs
-  alias Tempo.Logs.Log
+  alias Phoenix.LiveView.Socket
   alias Tempo.Habits
   alias Tempo.Habits.Habit
-  alias Phoenix.LiveView.Socket
+  alias Tempo.Logs
   alias Tempo.TimeHelpers
 
   @impl true

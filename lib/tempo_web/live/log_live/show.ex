@@ -1,4 +1,7 @@
 defmodule TempoWeb.LogLive.Show do
+  @moduledoc """
+  Displays more information about a log
+  """
   use TempoWeb, :live_view
 
   alias Tempo.Logs

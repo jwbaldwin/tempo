@@ -1,4 +1,7 @@
 defmodule TempoWeb.LogLive.FormComponent do
+  @moduledoc """
+  Logs form for edit/create
+  """
   use TempoWeb, :live_component
 
   alias Tempo.Logs

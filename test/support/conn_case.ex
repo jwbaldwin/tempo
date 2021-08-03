@@ -1,4 +1,6 @@
 defmodule TempoWeb.ConnCase do
+  # credo:disable-for-this-file
+
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.

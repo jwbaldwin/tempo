@@ -1,4 +1,7 @@
 defmodule TempoWeb.ModalComponent do
+  @moduledoc """
+  Base modal component with tailwindcss styling
+  """
   use TempoWeb, :live_component
 
   @impl true

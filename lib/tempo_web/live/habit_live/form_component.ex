@@ -1,4 +1,8 @@
 defmodule TempoWeb.HabitLive.FormComponent do
+  @moduledoc """
+  Form used for creating and editing a habit
+  """
+
   use TempoWeb, :live_component
 
   alias Tempo.Habits
