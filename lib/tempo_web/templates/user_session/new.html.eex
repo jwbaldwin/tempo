@@ -1,27 +1,33 @@
-<h1>Log in</h1>
-
-<%= form_for @conn, Routes.user_session_path(@conn, :create), [as: :user], fn f -> %>
-  <%= if @error_message do %>
-    <div class="alert alert-danger">
-      <p><%= @error_message %></p>
+<div class="flex flex-col min-h-screen text-white sm:py-20 sm:px-6 lg:px-8">
+  <div class="relative sm:mt-4 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="absolute inset-0 px-4 py-8 transform shadow sm:bg-red-500 sm:rounded-lg sm:px-10 sm:rotate-12"></div>
+    <div class="relative px-4 py-8 shadow sm:bg-gray-800 shadow-red-500-xl sm:rounded-lg sm:px-10">
+      <h1 class="flex justify-center w-full text-2xl font-semibold text-gray-200">Log in</h1>
+      <%= form_for @conn, Routes.user_session_path(@conn, :create), [as: :user, class: "space-y-6"], fn f -> %>
+      <%= if @error_message do %>
+        <div class="alert alert-danger">
+          <p><%= @error_message %></p>
+        </div>
+      <% end %>
+      <%= label f, :email, class: "block text-sm font-medium text-gray-500" %>
+      <%= email_input f, :email, required: true, class: "text-default block w-full px-3 py-4 placeholder-gray-400 border border-gray-700 bg-gray-700 rounded shadow-sm appearance-none focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" %>
+      <%= label f, :password, class: "block text-sm font-medium text-gray-500" %>
+      <%= password_input f, :password, required: true, class: "block w-full px-3 py-4 placeholder-gray-400 border border-gray-700 bg-gray-700 rounded shadow-sm appearance-none focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" %>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <%= checkbox f, :remember_me, class: "w-4 h-4 border-gray-700 bg-gray-700 rounded focus:ring-blue-900" %>
+          <%= label f, :remember_me, "Keep me logged in for 60 days", class: "text-gray-400 block ml-2 text-sm" %>
+        </div>
+      </div>
+      <div>
+        <%= submit "Log in", class: "md-red-btn text-white shadow-red-500-3xl w-full" %>
+      </div>
+    <% end %>
+    <div class="flex justify-center mt-8 text-sm">
+      <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "font-medium text-red-500 hover:text-blue-900" %> <span class="mx-8 text-gray-500">|</span>
+      <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "font-medium text-red-500 hover:text-blue-900" %>
     </div>
-  <% end %>
-
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
-
-  <%= label f, :remember_me, "Keep me logged in for 60 days" %>
-  <%= checkbox f, :remember_me %>
-
-  <div>
-    <%= submit "Log in" %>
   </div>
-<% end %>
-
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
-</p>
+</div>
+</div>
+</div>
