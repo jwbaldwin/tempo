@@ -12,6 +12,8 @@ defmodule Tempo.TimeHelpers do
 
   @weekstart :sun
 
+  @human_format "%A at %l:%M%P"
+
   @doc """
   Returns the day of the week as an atom
   > current_day()
@@ -26,6 +28,14 @@ defmodule Tempo.TimeHelpers do
   """
   def current_time do
     Timex.local()
+  end
+
+  @doc """
+  Returns the current timezone information
+  >> "
+  """
+  def current_timezone do
+    Timex.Timezone.local()
   end
 
   @doc """
@@ -111,6 +121,38 @@ defmodule Tempo.TimeHelpers do
 
       :day ->
         Timex.end_of_day(Timex.now())
+    end
+  end
+
+  @doc """
+  Returns the string for a logged action in human-readable format
+  >> Tuesday at 8:39pm
+  Or returns relative time if under 90 minutes ago
+  >> 13 minutes ago
+  """
+  def to_human_relative(logged_time) do
+    time_difference = Timex.diff(logged_time, current_time(), :minutes)
+
+    cond do
+      time_difference > -90 ->
+        to_human_relative(logged_time, :relative)
+
+      true ->
+        to_human_relative(logged_time, :default)
+    end
+  end
+
+  defp to_human_relative(logged_time, :default) do
+    Timex.Timezone.convert(logged_time, current_timezone())
+    |> Timex.format!(@human_format, :strftime)
+  end
+
+  defp to_human_relative(logged_time, :relative) do
+    Timex.Timezone.convert(logged_time, current_timezone())
+    |> Timex.Format.DateTime.Formatters.Relative.format("{relative}")
+    |> case do
+      {:ok, time} -> time
+      {:error, _} -> to_human_relative(logged_time, :default)
     end
   end
 end

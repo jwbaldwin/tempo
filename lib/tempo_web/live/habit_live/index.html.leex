@@ -15,9 +15,9 @@
       <div class="col-span-12 pb-4 text-3xl font-semibold"><%= habit.name %></div>
       <div class="relative col-span-11 pt-1">
         <div x-data="{ iterations: <%= habit.iterations %>  }" class="flex w-full">
-          <%= for { _log, i} <- Enum.with_index(habit.logs, 1) do %>
+          <%= for { log, i} <- Enum.with_index(habit.logs, 1) do %>
             <div :class="<%= i %> !== iterations ? 'w-full' : ''" class="flex items-center hover:animate-pulse">
-              <div class="w-12 h-12 transition-all duration-300 bg-red-500 border-2 border-red-600 rounded-md progress-box"></div>
+              <div data-tippy-content="🔥 logged <%= TimeHelpers.to_human_relative(log.inserted_at) %>" class="w-12 h-12 transition-all duration-300 bg-red-500 border-2 border-red-600 rounded-md progress-box"></div>
               <%= if i != habit.iterations do %>
                 <div class="w-full h-2 transition-all duration-300 transform bg-red-500 border-t border-b border-red-600"></div>
               <% end %>

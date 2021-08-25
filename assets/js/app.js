@@ -13,10 +13,19 @@ import "../css/app.css"
 //     import socket from "./socket"
 //
 import "phoenix_html"
-import {Socket} from "phoenix"
+import { Socket } from "phoenix"
 import topbar from "topbar"
-import {LiveSocket} from "phoenix_live_view"
+import { LiveSocket } from "phoenix_live_view"
 import Alpine from "alpinejs"
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
+
+tippy('[data-tippy-content]',
+    {
+        duration: 0,
+        arrow: false,
+        theme: "tempo"
+    });
 
 window.Alpine = Alpine
 
@@ -26,17 +35,17 @@ let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("
 let liveSocket = new LiveSocket("/live", Socket, {
     dom: {
         onBeforeElUpdated(from, to) {
-            if (from._x_dataStack) { 
+            if (from._x_dataStack) {
                 window.Alpine.clone(from, to);
                 window.Alpine.initTree(to);
             }
         }
     },
-    params: {_csrf_token: csrfToken}
-  })
+    params: { _csrf_token: csrfToken }
+})
 
 // Show progress bar on live navigation and form submits
-topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
+topbar.config({ barColors: { 0: "#ef4444" }, shadowColor: "rgba(0, 0, 0, .3)" })
 window.addEventListener("phx:page-loading-start", info => topbar.show())
 window.addEventListener("phx:page-loading-stop", info => topbar.hide())
 
