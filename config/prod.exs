@@ -12,7 +12,7 @@ use Mix.Config
 config :mmentum, MmentumWeb.Endpoint,
   url: [host: nil, port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  check_origin: ["https://mmentum.jwbaldwin.com", "https://app.mytempo.app"]
+  check_origin: ["https://mmentum.jwbaldwin.com", "https://app.mmentum.io"]
 
 # Do not print debug messages in production
 config :logger, level: :info

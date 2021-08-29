@@ -1,4 +1,5 @@
 const theme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   purge: [
@@ -13,13 +14,16 @@ module.exports = {
     extend: {
       fontFamily: {
         'sans': ['poppins', ...theme.fontFamily.sans]
-      }
+      },
+      colors: {
+        trueGray: colors.trueGray
+      },
     },
   },
   variants: {
     extend: {
-     scale: ['hover'],
-     animation: ['hover'],
+      scale: ['hover'],
+      animation: ['hover'],
     },
   },
   plugins: [
