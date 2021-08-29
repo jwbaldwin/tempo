@@ -1,10 +1,10 @@
 use Mix.Config
 
 # Configure your database
-config :tempo, Tempo.Repo,
+config :mmentum, Mmentum.Repo,
   username: "postgres",
   password: "postgres",
-  database: "tempo_dev",
+  database: "mmentum_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -15,7 +15,7 @@ config :tempo, Tempo.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :tempo, TempoWeb.Endpoint,
+config :mmentum, MmentumWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -53,13 +53,13 @@ config :tempo, TempoWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :tempo, TempoWeb.Endpoint,
+config :mmentum, MmentumWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/tempo_web/(live|views)/.*(ex)$",
-      ~r"lib/tempo_web/templates/.*(eex)$"
+      ~r"lib/mmentum_web/(live|views)/.*(ex)$",
+      ~r"lib/mmentum_web/templates/.*(eex)$"
     ]
   ]
 

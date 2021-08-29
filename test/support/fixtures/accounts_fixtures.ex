@@ -1,7 +1,7 @@
-defmodule Tempo.AccountsFixtures do
+defmodule Mmentum.AccountsFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Tempo.Accounts` context.
+  entities via the `Mmentum.Accounts` context.
   """
 
   def unique_user_email, do: "user#{System.unique_integer()}@example.com"
@@ -18,7 +18,7 @@ defmodule Tempo.AccountsFixtures do
     {:ok, user} =
       attrs
       |> valid_user_attributes()
-      |> Tempo.Accounts.register_user()
+      |> Mmentum.Accounts.register_user()
 
     user
   end

@@ -2,10 +2,16 @@
 #
 #     mix run priv/repo/seeds.exs
 #
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     Tempo.Repo.insert!(%Tempo.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+users = [
+  %{
+    email: "jwbaldwin3@gmail.com",
+    password: "password12345"
+  }
+]
+
+for user <- users do
+  {:ok, user} = Mmentum.Accounts.register_user(user)
+  {encoded_token, user_token} = Mmentum.Accounts.UserToken.build_email_token(user, "confirm")
+  Mmentum.Repo.insert!(user_token)
+  Mmentum.Accounts.confirm_user(encoded_token)
+end

@@ -1,8 +1,8 @@
-# Tempo
-Tempo is a hobby project built really quickly to help me track my habits and keep on tempo with them.
+# Mmentum
+Mmentum is a hobby project built really quickly to help me track my habits and keep on mmentum with them.
 
 ### Thesis
-Large progress is the culmination of directed movement that results in momentum. The key to momentum is maintaining *tempo*!
+Large progress is the culmination of directed movement that results in momentum. The key to momentum is maintaining *mmentum*!
 
 -----
 

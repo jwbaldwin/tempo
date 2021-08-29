@@ -1,4 +1,4 @@
-defmodule Tempo.DataCase do
+defmodule Mmentum.DataCase do
   # credo:disable-for-this-file
 
   @moduledoc """
@@ -12,7 +12,7 @@ defmodule Tempo.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use Tempo.DataCase, async: true`, although
+  by setting `use Mmentum.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -20,20 +20,20 @@ defmodule Tempo.DataCase do
 
   using do
     quote do
-      alias Tempo.Repo
+      alias Mmentum.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Tempo.DataCase
+      import Mmentum.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Tempo.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Mmentum.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Tempo.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Mmentum.Repo, {:shared, self()})
     end
 
     :ok

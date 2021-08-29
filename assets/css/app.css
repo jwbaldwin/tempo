@@ -11,6 +11,6 @@
     @apply px-3 py-2 text-base font-semibold text-center duration-150 transform bg-red-500 border border-red-600 rounded hover:bg-red-600 hover:border-red-700;
 }
 
-.tippy-box[data-theme~='tempo'] {
-    @apply bg-gradient-to-r from-red-500 to-red-800 text-white px-2 py-1 font-medium;
+.tippy-box[data-theme~='mmentum'] {
+    @apply bg-gradient-to-r from-red-500 to-red-800 text-gray-900 px-2 py-1 font-medium;
 }

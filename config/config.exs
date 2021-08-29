@@ -7,15 +7,15 @@
 # General application configuration
 use Mix.Config
 
-config :tempo,
-  ecto_repos: [Tempo.Repo]
+config :mmentum,
+  ecto_repos: [Mmentum.Repo]
 
 # Configures the endpoint
-config :tempo, TempoWeb.Endpoint,
+config :mmentum, MmentumWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Ok8cAFYs0osJeRpyNoNcHXG7ZCljsmrWwIdHsT25ChJiLOgDAsr1zX/tfIfHD87X",
-  render_errors: [view: TempoWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Tempo.PubSub,
+  render_errors: [view: MmentumWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Mmentum.PubSub,
   live_view: [signing_salt: "c8KAldRC"]
 
 # Configures Elixir's Logger

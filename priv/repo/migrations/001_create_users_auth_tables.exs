@@ -1,4 +1,4 @@
-defmodule Tempo.Repo.Migrations.CreateUsersAuthTables do
+defmodule Mmentum.Repo.Migrations.CreateUsersAuthTables do
   use Ecto.Migration
 
   def change do

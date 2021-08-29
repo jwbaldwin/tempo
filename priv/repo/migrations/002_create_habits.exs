@@ -1,4 +1,4 @@
-defmodule Tempo.Repo.Migrations.CreateHabits do
+defmodule Mmentum.Repo.Migrations.CreateHabits do
   use Ecto.Migration
 
   def change do

@@ -24,7 +24,7 @@ tippy('[data-tippy-content]',
     {
         duration: 0,
         arrow: false,
-        theme: "tempo"
+        theme: "mmentum"
     });
 
 window.Alpine = Alpine

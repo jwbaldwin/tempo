@@ -1,0 +1,34 @@
+<div class="relative">
+  <div class="container px-4 mx-auto md:px-0">
+    <div class="flex items-center justify-between py-6 md:justify-start md:space-x-10">
+      <nav class="md:flex">
+        <div class="flex content-center">
+          <svg width="66" height="53" viewBox="0 0 66 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M38.5604 24.6155C39.3595 25.6962 39.3598 27.172 38.5609 28.2529L37.3275 29.9218L37.3269 29.9247L37.3253 29.9272L37.3228 29.9288L37.3199 29.9295L28.9751 41.2197L28.9695 41.2121L28.9638 41.2197L28.6273 41.6787L27.9389 42.6042C27.937 42.6061 27.9355 42.608 27.9343 42.61C27.9331 42.6119 27.9322 42.6137 27.9312 42.6156C27.9301 42.6179 27.9289 42.6202 27.9274 42.6226C27.9263 42.6241 27.9251 42.6256 27.9236 42.6271L23.7321 48.3025L22.7497 49.6315C21.2413 51.6723 18.8541 52.8764 16.3163 52.8764H1.56157C0.293625 52.8764 -0.434309 51.4332 0.319348 50.4135C0.319348 50.4135 0.32263 50.4022 0.326997 50.3982H0.334646L14.1941 31.6275H14.2018V31.6198L14.2094 31.6122L14.676 30.9773L15.7091 29.5773L15.675 29.5527L16.8602 27.7748C17.42 26.9351 17.42 25.8411 16.8602 25.0013L15.8017 23.4136L0.855381 3.18865C0.815784 3.13507 0.779346 3.08059 0.745987 3.02536L0.312602 2.43892C-0.433633 1.42913 0.287258 0 1.54286 0H2.46383H16.316H17.2761C19.2173 0 21.0434 0.921094 22.1971 2.48224L34.9182 19.6955C34.9211 19.6984 34.924 19.7002 34.9265 19.7017C34.9305 19.7042 34.9335 19.706 34.9335 19.7108L38.5604 24.6155ZM18.6826 27.3124L28.9094 41.1462L18.6829 27.312L18.6826 27.3124Z" fill="url(#paint0_linear)"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M64.3129 24.0564C65.3579 25.4694 65.3582 27.3989 64.3137 28.8122L63.4937 29.9218C63.4937 29.9238 63.4929 29.9258 63.4915 29.9272C63.49 29.9286 63.4881 29.9295 63.486 29.9295L55.1413 41.2197L54.8047 41.6787L54.1163 42.6042C54.1125 42.608 54.1106 42.6118 54.1087 42.6156C54.1068 42.6195 54.1049 42.6233 54.1011 42.6271L49.9095 48.3025L48.9272 49.6315C47.4188 51.6723 45.0315 52.8764 42.4938 52.8764H27.739C26.4711 52.8764 25.7431 51.4332 26.4968 50.4135C26.4976 50.4103 26.4989 50.4073 26.5009 50.4047C26.5029 50.402 26.5054 50.3998 26.5083 50.3982L40.3678 31.6282H40.3754V31.6206L40.3831 31.6129L40.8496 30.9781L42.1343 29.2369L42.0551 29.1826L42.9735 27.7131C43.4802 26.9024 43.4802 25.8738 42.9735 25.0631L42.0551 23.5936L42.0926 23.5679L27.0328 3.18939C26.0572 1.8692 26.9997 0.000747681 28.6413 0.000747681H42.4935C45.0314 0.000747681 47.4188 1.20499 48.9272 3.24604L61.0843 19.6962C61.0873 19.6992 61.0902 19.701 61.0927 19.7025C61.0967 19.705 61.0996 19.7068 61.0996 19.7115L64.3129 24.0564ZM44.7815 27.2111L55.1278 41.2015L44.7833 27.2086L44.7815 27.2111Z" fill="url(#paint1_linear)"/>
+            <defs>
+              <linearGradient id="paint0_linear" x1="19.7549" y1="26.7702" x2="19.5851" y2="52.8764" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EF4444"/>
+                <stop offset="1" stop-color="#C04545"/>
+              </linearGradient>
+              <linearGradient id="paint1_linear" x1="45.8129" y1="26.7705" x2="45.6421" y2="52.8764" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EF4444"/>
+                <stop offset="1" stop-color="#C04545"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <p class="flex-wrap content-center hidden pl-4 text-5xl font-semibold tracking-tighter md:flex">Mmentum</p>
+        </div>
+      </nav>
+      <div class="flex items-center justify-end flex-1 lg:w-0">
+        <%= if @current_user do %>
+          <%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class: "text-base font-medium text-gray-500 whitespace-nowrap hover:text-gray-400" %>
+          <%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "ml-4 md-red-btn shadow-red-500-3xl" %>
+        <% else %>
+          <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "text-base font-medium text-gray-500 whitespace-nowrap hover:bg-gray-400" %>
+          <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "inline-flex items-center justify-center px-4 py-2 ml-8 text-base font-medium text-gray-900 bg-indigo-600 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-indigo-700" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

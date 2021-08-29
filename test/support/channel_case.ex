@@ -1,4 +1,4 @@
-defmodule TempoWeb.ChannelCase do
+defmodule MmentumWeb.ChannelCase do
   # credo:disable-for-this-file
 
   @moduledoc """
@@ -13,7 +13,7 @@ defmodule TempoWeb.ChannelCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use TempoWeb.ChannelCase, async: true`, although
+  by setting `use MmentumWeb.ChannelCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -23,18 +23,18 @@ defmodule TempoWeb.ChannelCase do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
-      import TempoWeb.ChannelCase
+      import MmentumWeb.ChannelCase
 
       # The default endpoint for testing
-      @endpoint TempoWeb.Endpoint
+      @endpoint MmentumWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Tempo.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Mmentum.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Tempo.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Mmentum.Repo, {:shared, self()})
     end
 
     :ok

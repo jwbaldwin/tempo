@@ -1,4 +1,4 @@
-defmodule TempoWeb.ConnCase do
+defmodule MmentumWeb.ConnCase do
   # credo:disable-for-this-file
 
   @moduledoc """
@@ -13,7 +13,7 @@ defmodule TempoWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use TempoWeb.ConnCase, async: true`, although
+  by setting `use MmentumWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -24,20 +24,20 @@ defmodule TempoWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import TempoWeb.ConnCase
+      import MmentumWeb.ConnCase
 
-      alias TempoWeb.Router.Helpers, as: Routes
+      alias MmentumWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint TempoWeb.Endpoint
+      @endpoint MmentumWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Tempo.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Mmentum.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Tempo.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Mmentum.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
@@ -52,7 +52,7 @@ defmodule TempoWeb.ConnCase do
   test context.
   """
   def register_and_log_in_user(%{conn: conn}) do
-    user = Tempo.AccountsFixtures.user_fixture()
+    user = Mmentum.AccountsFixtures.user_fixture()
     %{conn: log_in_user(conn, user), user: user}
   end
 
@@ -62,7 +62,7 @@ defmodule TempoWeb.ConnCase do
   It returns an updated `conn`.
   """
   def log_in_user(conn, user) do
-    token = Tempo.Accounts.generate_user_session_token(user)
+    token = Mmentum.Accounts.generate_user_session_token(user)
 
     conn
     |> Phoenix.ConnTest.init_test_session(%{})
