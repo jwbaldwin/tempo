@@ -1,19 +1,16 @@
-<div class="relative">
-  <div class="container px-4 mx-auto md:px-0">
-    <div class="flex items-center justify-between py-6 md:justify-start md:space-x-10">
-      <nav class="md:flex">
-        <div class="flex content-center">
-        </div>
-      </nav>
-      <div class="flex items-center justify-end flex-1 lg:w-0">
-        <%= if @current_user do %>
-          <%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class: "text-base font-medium text-gray-500 whitespace-nowrap hover:text-gray-400" %>
-          <%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "ml-4 md-red-btn shadow-red-500-3xl" %>
-        <% else %>
-          <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "text-base font-medium text-gray-500 whitespace-nowrap hover:bg-gray-400" %>
-          <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "inline-flex items-center justify-center px-4 py-2 ml-8 text-base font-medium text-gray-900 bg-indigo-600 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-indigo-700" %>
-        <% end %>
-      </div>
+<div class="relative py-6">
+  <nav class="relative flex items-center justify-between sm:h-10 lg:justify-start" aria-label="Global">
+    <div class="flex content-center">
+      <img src="<%= Routes.static_path(@conn, "/images/mmentum.svg") %>" class="flex h-8 sm:h-12" alt="mmentum logo" />
     </div>
-  </div>
+    <div class="flex items-center justify-end flex-1 lg:w-0">
+      <%= if @current_user do %>
+        <%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class: "btn-tertiary" %>
+        <%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "btn-secondary ml-8" %>
+      <% else %>
+        <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "btn-tertiary" %>
+        <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "btn-secondary ml-8" %>
+      <% end %>
+    </div>
+  </nav>
 </div>

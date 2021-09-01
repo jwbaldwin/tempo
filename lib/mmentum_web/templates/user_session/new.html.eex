@@ -1,8 +1,7 @@
-<div class="flex flex-col min-h-screen text-gray-900 sm:py-20 sm:px-6 lg:px-8">
+<div class="flex flex-col min-h-screen text-gray-900 sm:py-6 sm:px-6 lg:px-8">
   <div class="relative sm:mt-4 sm:mx-auto sm:w-full sm:max-w-md">
-    <div class="absolute inset-0 px-4 py-8 transform shadow sm:bg-gray-200 sm:rounded-lg sm:px-10 sm:rotate-12"></div>
-    <div class="relative px-4 py-8 bg-white shadow-md sm:rounded-lg sm:px-10">
-      <h1 class="flex justify-center w-full text-2xl font-semibold text-gray-900">Log in</h1>
+    <div class="relative px-4 py-8 sm:px-10">
+      <h1 class="flex w-full text-2xl font-semibold text-gray-900 justify-left">Log in</h1>
       <%= form_for @conn, Routes.user_session_path(@conn, :create), [as: :user, class: "space-y-6"], fn f -> %>
       <%= if @error_message do %>
         <div class="text-sm font-semibold text-red-500">
@@ -20,14 +19,12 @@
         </div>
       </div>
       <div>
-        <%= submit "Log in", class: "md-red-btn text-gray-900 shadow-red-500-3xl w-full" %>
+        <%= submit "Log in", class: "btn-primary w-full" %>
       </div>
     <% end %>
     <div class="flex justify-center mt-8 text-sm">
-      <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "font-medium text-gray-500 hover:text-blue-900" %> <span class="mx-8 text-gray-500">|</span>
-      <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "font-medium text-gray-500 hover:text-blue-900" %>
+      <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "btn-tertiary text-sm" %> <span class="mx-8 text-gray-500">|</span>
+      <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "btn-tertiary text-sm" %>
     </div>
   </div>
-</div>
-</div>
 </div>

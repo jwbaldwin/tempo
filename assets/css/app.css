@@ -3,14 +3,20 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.big-red-btn {
-    @apply block w-full px-4 py-3.5 font-medium text-white rounded shadow bg-gradient-to-r from-trueGray-900 to-trueGray-900 hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trueGray-400 focus:ring-offset-trueGray-900;
-}
+@layer components {
+    .btn-primary {
+        @apply block px-5 py-3.5 items-center text-base font-medium text-white rounded shadow bg-gradient-to-r from-trueGray-900 to-trueGray-900 hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trueGray-400 focus:ring-offset-trueGray-900;
+    }
 
-.md-red-btn {
-    @apply block w-full px-4 py-3.5 font-medium text-white rounded shadow bg-gradient-to-r from-trueGray-900 to-trueGray-900 hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trueGray-400 focus:ring-offset-trueGray-900;
+    .btn-secondary {
+        @apply inline-flex items-center px-4 py-2 border border-trueGray-300 shadow text-base font-medium rounded text-trueGray-700 bg-white hover:bg-trueGray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trueGray-400;
+    }
+
+    .btn-tertiary {
+        @apply font-medium text-gray-500 whitespace-nowrap hover:text-gray-600;
+    }
 }
 
 .tippy-box[data-theme~='mmentum'] {
-    @apply bg-gradient-to-r from-red-500 to-red-800 text-gray-900 px-2 py-1 font-medium;
+    @apply bg-gradient-to-r from-trueGray-700 to-trueGray-900 text-white px-2 py-1 font-medium;
 }

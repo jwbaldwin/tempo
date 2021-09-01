@@ -25,7 +25,8 @@ defmodule MmentumWeb.HabitLive.Index do
       current_day: TimeHelpers.current_day(),
       current_time: TimeHelpers.current_time(),
       days_until_end_of_week: TimeHelpers.days_to_end(:week),
-      greeting: TimeHelpers.greeting_for_time_of_day()
+      greeting: TimeHelpers.greeting_for_time_of_day(),
+      time_of_day: TimeHelpers.time_of_day()
     })
   end
 

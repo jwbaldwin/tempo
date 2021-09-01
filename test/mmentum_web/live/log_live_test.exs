@@ -22,7 +22,7 @@ defmodule MmentumWeb.LogLiveTest do
   describe "Index" do
     setup [:create_log]
 
-    test "lists all logs", %{conn: conn, log: log} do
+    test "lists all logs", %{conn: conn, log: _log} do
       {:ok, _index_live, html} = live(conn, Routes.log_index_path(conn, :index))
 
       assert html =~ "Listing Logs"

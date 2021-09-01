@@ -1,26 +1,23 @@
-<h2 class="mb-3 text-lg font-medium leading-6 text-gray-200"><%= @title %></h2>
-
+<h2 class="mb-3 text-lg font-medium leading-6 text-trueGray-900"><%= @title %></h2>
 <%= f = form_for @changeset, "#",
   id: "habit-form",
   phx_target: @myself,
   phx_change: "validate",
-  phx_submit: "save"
+  phx_submit: "save",
+  class: "space-y-2"
   %>
-
-  <%= label f, :name, class: "block text-sm font-medium text-gray-300" %>
-  <%= text_input f, :name, placeholder: "Reading, gym, meditate...", class: "text-gray-800 mt-1 w-full placeholder-gray-300 border-gray-300 rounded-md shadow-sm" %>
-  <%= error_tag f, :name %>
-
-  <%= label f, :iterations, class: "mt-2 block text-sm font-medium text-gray-300" %>
-  <div class="flex align-middle">
-    <%= number_input f, :iterations, placeholder: "per week", class: "text-gray-800 mt-1 w-2/3 placeholder-gray-300 border-gray-300 rounded-md shadow-sm"%>
-    <span class="flex items-center pl-2 text-gray-500">/ week</span>
-  </div>
-  <%= error_tag f, :iterations %>
-
-  <div class="flex flex-row-reverse">
-    <%= submit "Save habit", phx_disable_with: "Saving...", class: "mt-8 shadow-red-500-3xl md-red-btn" %>
-  </div>
+<%= label f, :name, class: "block text-sm font-medium text-gray-500" %>
+<%= text_input f, :name, placeholder: "Reading, gym, meditate...", class: "text-default block w-full px-2 py-3 placeholder-gray-400 border border-gray-300 bg-gray-100 rounded shadow-sm appearance-none focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" %>
+<%= error_tag f, :name %>
+<%= label f, :iterations, class: "pt-4 block text-sm font-medium text-gray-500" %>
+<div class="flex align-middle">
+  <%= number_input f, :iterations, placeholder: "1", class: "text-default block w-full px-2 py-3 placeholder-gray-400 border border-gray-300 bg-gray-100 rounded shadow-sm appearance-none focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm"%>
+  <span class="flex items-center pl-2 text-gray-500 whitespace-nowrap">/ week</span>
+</div>
+<%= error_tag f, :iterations %>
+<div class="flex flex-row-reverse">
+  <%= submit "Save habit", phx_disable_with: "Saving...", class: "px-6 py-3 mt-8 btn-primary" %>
+</div>
 </form>
 <style>
   span.invalid-feedback {

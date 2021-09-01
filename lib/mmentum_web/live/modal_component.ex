@@ -12,7 +12,7 @@ defmodule MmentumWeb.ModalComponent do
         <div class="fixed absolute inset-0 z-20 transition-opacity bg-gray-500 bg-opacity-75" aria-hidden="true"></div>
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
-        <div id="<%= @id %>" class="relative z-30 inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-gray-800 rounded-lg shadow-xl phx-modal sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6"
+        <div id="<%= @id %>" class="relative z-30 inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded shadow-xl phx-modal sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6"
           phx-capture-click="close"
           phx-window-keydown="close"
           phx-key="escape"
@@ -22,7 +22,7 @@ defmodule MmentumWeb.ModalComponent do
           <div class="phx-modal-content">
           <div class="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
             <span class="sr-only">Close</span>
-            <%= live_patch raw("&times;"), to: @return_to, class: "phx-modal-close text-xl bg-gray-800 rounded text-gray-200 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400" %>
+            <%= live_patch raw("&times;"), to: @return_to, class: "phx-modal-close text-3xl rounded text-trueGray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400" %>
           </div>
             <%= live_component @socket, @component, @opts %>
           </div>

@@ -1,21 +1,27 @@
-<h1>Register</h1>
-<%= form_for @changeset, Routes.user_registration_path(@conn, :create), [class: 'text-gray-800'], fn f -> %>
-<%= if @changeset.action do %>
-  <div class="alert alert-danger">
-    <p>Oops, something went wrong! Please check the errors below.</p>
+<div class="flex flex-col min-h-screen text-gray-900 sm:py-6 sm:px-6 lg:px-8">
+  <div class="relative sm:mt-4 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="relative px-4 py-8 sm:px-10">
+      <img src="<%= Routes.static_path(@conn, "/images/mmentum.svg") %>" class="flex w-16 pb-4 mx-auto" alt="mmentum logo" />
+      <h1 class="flex w-full text-2xl font-semibold text-gray-900 justify-left">Register</h1>
+      <%= form_for @changeset, Routes.user_registration_path(@conn, :create), [class: "space-y-6"], fn f -> %>
+      <%= if @changeset.action do %>
+        <div class="text-sm font-semibold text-red-500">
+          <p>Oops, something went wrong! Please check the errors below.</p>
+        </div>
+      <% end %>
+      <%= label f, :email, class: "block text-sm font-medium text-gray-500" %>
+      <%= email_input f, :email, required: true, class: "text-default block w-full px-3 py-4 placeholder-gray-400 border border-gray-300 bg-gray-100 rounded shadow-sm appearance-none focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" %>
+      <%= error_tag f, :email %>
+      <%= label f, :password, class: "block text-sm font-medium text-gray-500" %>
+      <%= password_input f, :password, required: true, class: "text-default block w-full px-3 py-4 placeholder-gray-400 border border-gray-300 bg-gray-100 rounded shadow-sm appearance-none focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" %>
+      <%= error_tag f, :password %>
+      <div>
+        <%= submit "Register", class: "btn-primary w-full" %>
+      </div>
+    <% end %>
+    <div class="flex justify-center mt-8 text-sm">
+      <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "btn-tertiary text-sm" %> <span class="mx-8 text-gray-500">|</span>
+      <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "btn-tertiary text-sm" %>
+    </div>
   </div>
-<% end %>
-<%= label f, :email, class: "text-gray-100" %>
-<%= email_input f, :email, required: true %>
-<%= error_tag f, :email %>
-<%= label f, :password, class: "text-gray-100" %>
-<%= password_input f, :password, required: true %>
-<%= error_tag f, :password %>
-<div>
-  <%= submit "Register", class: "md-red-btn text-gray-900 shadow-red-500-3xl my-8" %>
 </div>
-<% end %>
-<p>
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
-</p>

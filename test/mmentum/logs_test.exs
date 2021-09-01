@@ -30,7 +30,7 @@ defmodule Mmentum.LogsTest do
     end
 
     test "create_log/1 with valid data creates a log" do
-      assert {:ok, %Log{} = log} = Logs.create_log(@valid_attrs)
+      assert {:ok, %Log{} = _log} = Logs.create_log(@valid_attrs)
     end
 
     test "create_log/1 with invalid data returns error changeset" do
@@ -39,7 +39,7 @@ defmodule Mmentum.LogsTest do
 
     test "update_log/2 with valid data updates the log" do
       log = log_fixture()
-      assert {:ok, %Log{} = log} = Logs.update_log(log, @update_attrs)
+      assert {:ok, %Log{} = _log} = Logs.update_log(log, @update_attrs)
     end
 
     test "update_log/2 with invalid data returns error changeset" do

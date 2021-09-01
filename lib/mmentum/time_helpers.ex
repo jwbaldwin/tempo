@@ -41,6 +41,11 @@ defmodule Mmentum.TimeHelpers do
   @doc """
   Returns a pre-written greeting for the time of day
   """
+  def greeting_for_time_of_day do
+    current_time()
+    |> greeting_for_time_of_day()
+  end
+
   def greeting_for_time_of_day(%DateTime{} = time) do
     hours_left = Timex.diff(Timex.end_of_day(time), time, :hours)
 
@@ -51,9 +56,22 @@ defmodule Mmentum.TimeHelpers do
     end
   end
 
-  def greeting_for_time_of_day do
+  @doc """
+  Returns :morning, :afternoon, :evening
+  """
+  def time_of_day do
     current_time()
-    |> greeting_for_time_of_day()
+    |> time_of_day()
+  end
+
+  def time_of_day(%DateTime{} = time) do
+    hours_left = Timex.diff(Timex.end_of_day(time), time, :hours)
+
+    cond do
+      is_morning(hours_left) -> :morning
+      is_afternoon(hours_left) -> :afternoon
+      true -> :evening
+    end
   end
 
   # Checks if hours left is between 4am (24 - 4 = 20) and 11am (24 - 11 = 13)
