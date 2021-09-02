@@ -1,6 +1,8 @@
 defmodule Mmentum.HabitsTest do
   use Mmentum.DataCase
 
+  import Mmentum.HabitsFixtures
+
   alias Mmentum.Habits
 
   describe "habits" do
@@ -10,22 +12,22 @@ defmodule Mmentum.HabitsTest do
     @update_attrs %{iterations: 43, name: "some updated name"}
     @invalid_attrs %{iterations: nil, name: nil}
 
-    def habit_fixture(attrs \\ %{}) do
-      {:ok, habit} =
+    def create_habit(attrs \\ %{}) do
+      %{user: user, habit: habit} =
         attrs
         |> Enum.into(@valid_attrs)
-        |> Habits.create_habit()
+        |> habit_fixture()
 
-      habit
+      %{user: user, habit: habit}
     end
 
     test "list_habits/0 returns all habits" do
-      habit = habit_fixture()
+      %{habit: habit} = create_habit()
       assert Habits.list_habits() == [habit]
     end
 
     test "get_habit!/1 returns the habit with given id" do
-      habit = habit_fixture()
+      %{habit: habit} = create_habit()
       assert Habits.get_habit!(habit.id) == habit
     end
 
@@ -40,26 +42,26 @@ defmodule Mmentum.HabitsTest do
     end
 
     test "update_habit/2 with valid data updates the habit" do
-      habit = habit_fixture()
+      %{habit: habit} = create_habit()
       assert {:ok, %Habit{} = habit} = Habits.update_habit(habit, @update_attrs)
       assert habit.iterations == 43
       assert habit.name == "some updated name"
     end
 
     test "update_habit/2 with invalid data returns error changeset" do
-      habit = habit_fixture()
+      %{habit: habit} = create_habit()
       assert {:error, %Ecto.Changeset{}} = Habits.update_habit(habit, @invalid_attrs)
       assert habit == Habits.get_habit!(habit.id)
     end
 
     test "delete_habit/1 deletes the habit" do
-      habit = habit_fixture()
+      %{habit: habit} = create_habit()
       assert {:ok, %Habit{}} = Habits.delete_habit(habit)
       assert_raise Ecto.NoResultsError, fn -> Habits.get_habit!(habit.id) end
     end
 
     test "change_habit/1 returns a habit changeset" do
-      habit = habit_fixture()
+      %{habit: habit} = create_habit()
       assert %Ecto.Changeset{} = Habits.change_habit(habit)
     end
   end

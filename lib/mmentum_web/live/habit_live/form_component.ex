@@ -45,7 +45,7 @@ defmodule MmentumWeb.HabitLive.FormComponent do
   end
 
   defp save_habit(socket, :new, habit_params) do
-    case Habits.create_habit(socket.assigns.current_user, habit_params) do
+    case Habits.create_habit(habit_params, socket.assigns.current_user) do
       {:ok, _habit} ->
         {:noreply,
          socket

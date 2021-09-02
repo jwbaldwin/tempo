@@ -40,7 +40,7 @@ defmodule Mmentum.Habits do
   @doc """
   Creates a habit.
   """
-  def create_habit(%User{} = user, params) do
+  def create_habit(params, %User{} = user) do
     Ecto.build_assoc(user, :habits)
     |> Habit.changeset(params)
     |> Repo.insert()
