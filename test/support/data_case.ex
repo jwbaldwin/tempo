@@ -54,4 +54,57 @@ defmodule Mmentum.DataCase do
       end)
     end)
   end
+
+  @doc """
+  Reverse a preload.
+  ## Example
+      site = Repo.get!(Site, 1) |> Repo.preload(:user)
+      Repo.forget(site, :user)
+  ## References
+  + https://stackoverflow.com/a/52323877
+  + https://stackoverflow.com/a/49997873
+  + https://github.com/thoughtbot/ex_machina/issues/295#issuecomment-433264227
+  """
+  def unload_all(struct) do
+    associations = resolve_associations(struct)
+    unload(struct, associations)
+  end
+
+  def unload(struct, associations) when is_list(associations) do
+    associations
+    |> Enum.reduce(struct, fn association, struct ->
+      unload(struct, association)
+    end)
+  end
+
+  def unload(structs, association) when is_list(structs) do
+    Enum.map(structs, fn struct ->
+      unload(struct, association)
+    end)
+  end
+
+  def unload(struct, association) do
+    %{
+      struct
+      | association => build_not_loaded(struct, association)
+    }
+  end
+
+  defp resolve_associations(%{__struct__: schema}) do
+    schema.__schema__(:associations)
+  end
+
+  defp build_not_loaded(%{__struct__: schema}, association) do
+    %{
+      cardinality: cardinality,
+      field: field,
+      owner: owner
+    } = schema.__schema__(:association, association)
+
+    %Ecto.Association.NotLoaded{
+      __cardinality__: cardinality,
+      __field__: field,
+      __owner__: owner
+    }
+  end
 end

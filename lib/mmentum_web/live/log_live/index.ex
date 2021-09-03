@@ -8,8 +8,10 @@ defmodule MmentumWeb.LogLive.Index do
   alias Mmentum.Logs.Log
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, assign(socket, :logs, list_logs())}
+  def mount(_params, session, socket) do
+    socket = assign_defaults(session, socket)
+
+    {:ok, assign(socket, :logs, list_logs(socket))}
   end
 
   @impl true
@@ -40,10 +42,11 @@ defmodule MmentumWeb.LogLive.Index do
     log = Logs.get_log!(id)
     {:ok, _} = Logs.delete_log(log)
 
-    {:noreply, assign(socket, :logs, list_logs())}
+    {:noreply, assign(socket, :logs, list_logs(socket))}
   end
 
-  defp list_logs do
-    Logs.list_logs()
+  defp list_logs(socket) do
+    user = get_current_user(socket)
+    Logs.list_logs_by_user(user)
   end
 end

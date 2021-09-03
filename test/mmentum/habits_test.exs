@@ -2,6 +2,7 @@ defmodule Mmentum.HabitsTest do
   use Mmentum.DataCase
 
   import Mmentum.HabitsFixtures
+  import Mmentum.AccountsFixtures
 
   alias Mmentum.Habits
 
@@ -21,9 +22,9 @@ defmodule Mmentum.HabitsTest do
       %{user: user, habit: habit}
     end
 
-    test "list_habits/0 returns all habits" do
-      %{habit: habit} = create_habit()
-      assert Habits.list_habits() == [habit]
+    test "list_habits/1 returns all habits for a user" do
+      %{user: user, habit: habit} = create_habit()
+      assert unload(Habits.list_habits(user), :logs) == [habit]
     end
 
     test "get_habit!/1 returns the habit with given id" do
@@ -32,13 +33,15 @@ defmodule Mmentum.HabitsTest do
     end
 
     test "create_habit/1 with valid data creates a habit" do
-      assert {:ok, %Habit{} = habit} = Habits.create_habit(@valid_attrs)
+      user = user_fixture()
+      assert {:ok, %Habit{} = habit} = Habits.create_habit(@valid_attrs, user)
       assert habit.iterations == 42
       assert habit.name == "some name"
     end
 
-    test "create_habit/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Habits.create_habit(@invalid_attrs)
+    test "create_habit/2 with invalid data returns error changeset" do
+      user = user_fixture()
+      assert {:error, %Ecto.Changeset{}} = Habits.create_habit(@invalid_attrs, user)
     end
 
     test "update_habit/2 with valid data updates the habit" do

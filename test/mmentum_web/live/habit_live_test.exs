@@ -2,21 +2,16 @@ defmodule MmentumWeb.HabitLiveTest do
   use MmentumWeb.ConnCase
 
   import Phoenix.LiveViewTest
-
-  alias Mmentum.Habits
+  import Mmentum.HabitsFixtures
 
   @create_attrs %{iterations: 42, name: "some name"}
   @update_attrs %{iterations: 43, name: "some updated name"}
   @invalid_attrs %{iterations: nil, name: nil}
 
-  defp fixture(:habit) do
-    {:ok, habit} = Habits.create_habit(@create_attrs)
-    habit
-  end
-
-  defp create_habit(_) do
-    habit = fixture(:habit)
-    %{habit: habit}
+  defp create_habit(%{conn: conn}) do
+    %{user: user, habit: habit} = habit_fixture(@create_attrs)
+    conn = log_in_user(conn, user)
+    %{conn: conn, habit: habit}
   end
 
   describe "Index" do
@@ -25,7 +20,7 @@ defmodule MmentumWeb.HabitLiveTest do
     test "lists all habits", %{conn: conn, habit: habit} do
       {:ok, _index_live, html} = live(conn, Routes.habit_index_path(conn, :index))
 
-      assert html =~ "Listing Habits"
+      assert html =~ "Good"
       assert html =~ habit.name
     end
 
@@ -76,7 +71,7 @@ defmodule MmentumWeb.HabitLiveTest do
     test "deletes habit in listing", %{conn: conn, habit: habit} do
       {:ok, index_live, _html} = live(conn, Routes.habit_index_path(conn, :index))
 
-      assert index_live |> element("#habit-#{habit.id} a", "Delete") |> render_click()
+      assert index_live |> element("#habit-#{habit.id} a", "Remove") |> render_click()
       refute has_element?(index_live, "#habit-#{habit.id}")
     end
   end

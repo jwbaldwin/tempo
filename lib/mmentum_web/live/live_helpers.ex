@@ -4,6 +4,8 @@ defmodule MmentumWeb.LiveHelpers do
   """
   import Phoenix.LiveView
   import Phoenix.LiveView.Helpers
+
+  alias Phoenix.LiveView.Socket
   alias MmentumWeb.Router.Helpers, as: Routes
 
   @doc """
@@ -25,6 +27,8 @@ defmodule MmentumWeb.LiveHelpers do
     modal_opts = [id: :modal, return_to: path, component: component, opts: opts]
     live_component(MmentumWeb.ModalComponent, modal_opts)
   end
+
+  def get_current_user(%Socket{assigns: %{current_user: user}} = _socket), do: user
 
   def assign_defaults(session, socket) do
     socket =

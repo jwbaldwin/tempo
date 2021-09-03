@@ -106,6 +106,4 @@ defmodule MmentumWeb.HabitLive.Index do
 
     habit.logs
   end
-
-  defp get_current_user(%Socket{assigns: %{current_user: user}} = _socket), do: user
 end

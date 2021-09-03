@@ -56,7 +56,7 @@ defmodule Mmentum.LogsTest do
     end
 
     test "change_log/1 returns a log changeset" do
-      %{log: log, user: user, habit: habit} = log_fixture()
+      %{log: log} = log_fixture()
       assert %Ecto.Changeset{} = Logs.change_log(log)
     end
   end
