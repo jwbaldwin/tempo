@@ -10,7 +10,7 @@ defmodule Mmentum.TimeHelpers do
     late: "Good evening"
   }
 
-  @weekstart :sun
+  @weekstart :mon
 
   @human_format "%A at %l:%M%P"
 
@@ -116,7 +116,7 @@ defmodule Mmentum.TimeHelpers do
         Timex.beginning_of_month(Timex.now())
 
       :week ->
-        Timex.beginning_of_week(Timex.now(), :sun)
+        Timex.beginning_of_week(Timex.now(), :mon)
 
       :day ->
         Timex.beginning_of_day(Timex.now())
@@ -135,7 +135,7 @@ defmodule Mmentum.TimeHelpers do
         Timex.end_of_month(Timex.now())
 
       :week ->
-        Timex.end_of_week(Timex.now(), :sun)
+        Timex.end_of_week(Timex.now(), :mon)
 
       :day ->
         Timex.end_of_day(Timex.now())

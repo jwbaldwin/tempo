@@ -9,12 +9,12 @@
         </div>
       <% end %>
       <%= label f, :email, class: "block text-sm font-medium text-gray-500" %>
-      <%= email_input f, :email, required: true, class: "text-default block w-full px-3 py-4 placeholder-gray-400 border border-gray-300 bg-gray-100 rounded shadow-sm appearance-none focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" %>
+      <%= email_input f, :email, required: true, class: "text-default block w-full px-3 py-4 placeholder-gray-400 border border-gray-300 ~bg-slate-100 rounded shadow-sm appearance-none focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" %>
       <%= label f, :password, class: "block text-sm font-medium text-gray-500" %>
-      <%= password_input f, :password, required: true, class: "block w-full px-3 py-4 placeholder-gray-400 border border-gray-300 bg-gray-100 rounded shadow-sm appearance-none focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" %>
+      <%= password_input f, :password, required: true, class: "block w-full px-3 py-4 placeholder-gray-400 border border-gray-300 ~bg-slate-100 rounded shadow-sm appearance-none focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" %>
       <div class="flex items-center justify-between">
         <div class="flex items-center">
-          <%= checkbox f, :remember_me, class: "w-4 h-4 border-gray-300 bg-gray-100 rounded focus:ring-gray-900" %>
+          <%= checkbox f, :remember_me, class: "w-4 h-4 border-gray-300 ~bg-slate-100 rounded focus:ring-gray-900" %>
           <%= label f, :remember_me, "Keep me logged in for 60 days", class: "text-gray-600 block ml-2 text-sm" %>
         </div>
       </div>

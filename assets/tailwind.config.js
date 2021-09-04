@@ -9,14 +9,14 @@ module.exports = {
     "../**/live/**/*.ex",
     "./js/**/*.js",
   ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
         'sans': ['poppins', ...theme.fontFamily.sans]
       },
       colors: {
-        trueGray: colors.trueGray
+        slate: colors.trueGray
       },
     },
   },
