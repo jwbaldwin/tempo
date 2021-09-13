@@ -8,7 +8,6 @@
       <% end %>
     </div>
     <div class="flex space-x-8 items-center justify-end flex-1 lg:w-0">
-      <%# TODO: Make button look good and hover state and clean transition? %>
       <%# This is setting the state in root.html.leex which modifies the localStorage darkMode variable %>
       <button @click="darkMode = !darkMode" class="transition transition-all duration-200 ~text-slate-500 dark:hover:text-slate-400 hover:text-slate-600 transform hover:-rotate-45 hover:scale-110 rounded-md">
         <template x-if="darkMode">
