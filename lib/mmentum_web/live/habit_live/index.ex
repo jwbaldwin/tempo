@@ -4,11 +4,11 @@ defmodule MmentumWeb.HabitLive.Index do
   """
   use MmentumWeb, :live_view
 
-  alias Phoenix.LiveView.Socket
   alias Mmentum.Habits
   alias Mmentum.Habits.Habit
   alias Mmentum.Logs
   alias Mmentum.TimeHelpers
+  alias Phoenix.LiveView.Socket
 
   @impl true
   def mount(_params, session, socket) do

@@ -4,7 +4,7 @@ defmodule Mmentum.HabitsFixtures do
   entities via the `Mmentum.Habits` context.
   """
 
-  defp unique_name(), do: "habit#{System.unique_integer()}"
+  defp unique_name, do: "habit#{System.unique_integer()}"
 
   def valid_habit_attributes(attrs \\ %{}) do
     Enum.into(attrs, %{
