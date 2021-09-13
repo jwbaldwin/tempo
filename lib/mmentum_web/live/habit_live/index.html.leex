@@ -18,18 +18,18 @@
           <div x-data="{ iterations: <%= habit.iterations %>  }" class="flex w-full">
             <%= for { log, i} <- Enum.with_index(habit.logs, 1) do %>
               <div :class="<%= i %> !== iterations ? 'w-full' : ''" class="flex items-center hover:animate-pulse">
-                <div data-tippy-content="🔥 logged <%= TimeHelpers.to_human_relative(log.inserted_at) %>" class="w-12 h-12 transition-all duration-300 border-2 rounded-full ~bg-slate-900 border-slate-900 progress-box"></div>
+                <div data-tippy-content="🔥 logged <%= TimeHelpers.to_human_relative(log.inserted_at) %>" class="w-12 h-12 transition-all duration-300 border-2 rounded-full ~bg-slate-900 ~border-slate-900 progress-box"></div>
                 <%= if i != habit.iterations do %>
-                  <div class="w-full flex-1 h-1.5 transition-all duration-300 transform ~bg-slate-900 border-t border-b border-slate-900"></div>
+                  <div class="w-full flex-1 h-1.5 transition-all duration-300 transform ~bg-slate-900 border-t border-b ~border-slate-900"></div>
                 <% end %>
               </div>
             <% end %>
             <%= if (length(habit.logs) - habit.iterations) != 0 do %>
               <%= for i <- (length(habit.logs) + 1)..habit.iterations do %>
                 <div x-data="{ iteration: <%= i %> }" :class="<%= i %> !== iterations ? 'w-full' : ''" class="flex items-center hover:animate-pulse">
-                  <div class="w-12 h-12 transition-all duration-300 border-2 rounded-full ~bg-slate-200 border-slate-300 progress-box"></div>
+                  <div class="w-12 h-12 transition-all duration-300 border-2 rounded-full ~bg-slate-200 ~border-slate-300 progress-box"></div>
                   <%= if i != habit.iterations do %>
-                    <div class="w-full flex-1 h-1.5 transition-all duration-300 transform border-t border-b ~bg-slate-200 border-slate-300"></div>
+                    <div class="w-full flex-1 h-1.5 transition-all duration-300 transform border-t border-b ~bg-slate-200 ~border-slate-300"></div>
                   <% end %>
                 </div>
               <% end %>
@@ -65,7 +65,7 @@
         </div>
       </div>
     <% end %>
-    <div class="flex pt-24">
+    <div class="flex pt-2">
       <%= live_patch "New Habit", to: Routes.habit_index_path(@socket, :new), class: "btn-primary shadow-slate-500-3xl" %>
     </div>
   <% else %>
