@@ -118,7 +118,7 @@ defmodule Mmentum.TimeHelpers do
         Timex.beginning_of_month(Timex.now())
 
       :week ->
-        Timex.beginning_of_week(Timex.now(), :mon)
+        Timex.beginning_of_week(Timex.now(), @weekstart)
 
       :day ->
         Timex.beginning_of_day(Timex.now())
@@ -137,7 +137,7 @@ defmodule Mmentum.TimeHelpers do
         Timex.end_of_month(Timex.now())
 
       :week ->
-        Timex.end_of_week(Timex.now(), :mon)
+        Timex.end_of_week(Timex.now(), @weekstart)
 
       :day ->
         Timex.end_of_day(Timex.now())
