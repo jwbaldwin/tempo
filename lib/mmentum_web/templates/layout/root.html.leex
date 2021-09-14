@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html
+  lang="en"
+  class=""
+  x-data="{ darkMode: localStorage.getItem('dark') === 'true'} "
+  x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
+  x-bind:class="{ 'dark': darkMode }">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -27,7 +32,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
-  <body class="max-w-4xl min-h-screen mx-auto antialiased text-gray-900 bg-white">
+  <body class="min-h-screen antialiased max-w-4xl pb-10 mx-auto ~text-slate-900 ~bg-white">
     <%= render "_user_menu.html", assigns %>
     <%= @inner_content %>
   </body>

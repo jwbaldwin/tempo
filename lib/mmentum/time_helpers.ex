@@ -4,13 +4,15 @@ defmodule Mmentum.TimeHelpers do
   Operates in local time.
   """
 
+  alias Timex.Format.DateTime.Formatters.Relative
+
   @greetings %{
     early: "Good morning",
     middle: "Good afternoon",
     late: "Good evening"
   }
 
-  @weekstart :sun
+  @weekstart :mon
 
   @human_format "%A at %l:%M%P"
 
@@ -116,7 +118,7 @@ defmodule Mmentum.TimeHelpers do
         Timex.beginning_of_month(Timex.now())
 
       :week ->
-        Timex.beginning_of_week(Timex.now(), :sun)
+        Timex.beginning_of_week(Timex.now(), @weekstart)
 
       :day ->
         Timex.beginning_of_day(Timex.now())
@@ -135,7 +137,7 @@ defmodule Mmentum.TimeHelpers do
         Timex.end_of_month(Timex.now())
 
       :week ->
-        Timex.end_of_week(Timex.now(), :sun)
+        Timex.end_of_week(Timex.now(), @weekstart)
 
       :day ->
         Timex.end_of_day(Timex.now())
@@ -151,12 +153,10 @@ defmodule Mmentum.TimeHelpers do
   def to_human_relative(logged_time) do
     time_difference = Timex.diff(logged_time, current_time(), :minutes)
 
-    cond do
-      time_difference > -90 ->
-        to_human_relative(logged_time, :relative)
-
-      true ->
-        to_human_relative(logged_time, :default)
+    if time_difference > -90 do
+      to_human_relative(logged_time, :relative)
+    else
+      to_human_relative(logged_time, :default)
     end
   end
 
@@ -167,7 +167,7 @@ defmodule Mmentum.TimeHelpers do
 
   defp to_human_relative(logged_time, :relative) do
     Timex.Timezone.convert(logged_time, current_timezone())
-    |> Timex.Format.DateTime.Formatters.Relative.format("{relative}")
+    |> Relative.format("{relative}")
     |> case do
       {:ok, time} -> time
       {:error, _} -> to_human_relative(logged_time, :default)

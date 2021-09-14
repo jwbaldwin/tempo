@@ -10,10 +10,10 @@
         </div>
       <% end %>
       <%= label f, :email, class: "block text-sm font-medium text-gray-500" %>
-      <%= email_input f, :email, required: true, class: "text-default block w-full px-3 py-4 placeholder-gray-400 border border-gray-300 bg-gray-100 rounded shadow-sm appearance-none focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" %>
+      <%= email_input f, :email, required: true, class: "text-default block w-full px-3 py-4 placeholder-gray-400 border border-gray-300 ~bg-slate-100 rounded shadow-sm appearance-none focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" %>
       <%= error_tag f, :email %>
       <%= label f, :password, class: "block text-sm font-medium text-gray-500" %>
-      <%= password_input f, :password, required: true, class: "text-default block w-full px-3 py-4 placeholder-gray-400 border border-gray-300 bg-gray-100 rounded shadow-sm appearance-none focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" %>
+      <%= password_input f, :password, required: true, class: "text-default block w-full px-3 py-4 placeholder-gray-400 border border-gray-300 ~bg-slate-100 rounded shadow-sm appearance-none focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" %>
       <%= error_tag f, :password %>
       <div>
         <%= submit "Register", class: "btn-primary w-full" %>

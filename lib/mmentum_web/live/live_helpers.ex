@@ -5,8 +5,8 @@ defmodule MmentumWeb.LiveHelpers do
   import Phoenix.LiveView
   import Phoenix.LiveView.Helpers
 
-  alias Phoenix.LiveView.Socket
   alias MmentumWeb.Router.Helpers, as: Routes
+  alias Phoenix.LiveView.Socket
 
   @doc """
   Renders a component inside the `MmentumWeb.ModalComponent` component.
