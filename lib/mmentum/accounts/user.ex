@@ -5,6 +5,7 @@ defmodule Mmentum.Accounts.User do
 
   @derive {Inspect, except: [:password]}
   schema "users" do
+    field :full_name, :string
     field :email, :string
     field :password, :string, virtual: true
     field :hashed_password, :string
@@ -35,9 +36,16 @@ defmodule Mmentum.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:full_name, :email, :password])
     |> validate_email()
     |> validate_password(opts)
+    |> validate_full_name()
+  end
+
+  defp validate_full_name(changeset) do
+    changeset
+    |> validate_required([:full_name])
+    |> validate_length(:full_name, min: 1, message: "Name cannot be blank")
   end
 
   defp validate_email(changeset) do
@@ -69,6 +77,21 @@ defmodule Mmentum.Accounts.User do
       |> delete_change(:password)
     else
       changeset
+    end
+  end
+
+  @doc """
+  A user changeset for changing the full name.
+
+  It requires that it is not blank.
+  """
+  def full_name_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:full_name])
+    |> validate_full_name()
+    |> case do
+      %{changes: %{full_name: _}} = changeset -> changeset
+      %{} = changeset -> add_error(changeset, :full_name, "did not change")
     end
   end
 

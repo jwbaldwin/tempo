@@ -1,7 +1,6 @@
 <div class="flex flex-col min-h-screen text-gray-900 sm:py-6 sm:px-6 lg:px-8">
   <div class="relative sm:mt-4 sm:mx-auto sm:w-full sm:max-w-md">
     <div class="relative px-4 py-8 sm:px-10">
-      <img src="<%= Routes.static_path(@conn, "/images/mmentum.svg") %>" class="flex w-16 pb-4 mx-auto" alt="mmentum logo" />
       <h1 class="flex w-full text-2xl font-semibold text-gray-900 justify-left">Register</h1>
       <%= form_for @changeset, Routes.user_registration_path(@conn, :create), [class: "space-y-6"], fn f -> %>
       <%= if @changeset.action do %>
@@ -9,6 +8,8 @@
           <p>Oops, something went wrong! Please check the errors below.</p>
         </div>
       <% end %>
+      <%= label f, :full_name, class: "block text-sm font-medium text-gray-500" %>
+      <%= text_input f, :full_name, required: true, class: "text-default block w-full px-3 py-4 placeholder-gray-400 border border-gray-300 ~bg-slate-100 rounded shadow-sm appearance-none focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" %>
       <%= label f, :email, class: "block text-sm font-medium text-gray-500" %>
       <%= email_input f, :email, required: true, class: "text-default block w-full px-3 py-4 placeholder-gray-400 border border-gray-300 ~bg-slate-100 rounded shadow-sm appearance-none focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" %>
       <%= error_tag f, :email %>
