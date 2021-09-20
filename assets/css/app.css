@@ -19,6 +19,7 @@
 
 
 @layer base {
+  @variants hover {
     /* Dark mode variants for background and text below */
     .\~text-slate-900 {
         @apply text-slate-900 dark:text-slate-100;
@@ -107,6 +108,7 @@
     .\~border-slate-300 {
         @apply border-slate-300 dark:border-slate-700;
     }
+  }
 }
 
 .tippy-box[data-theme~='mmentum'] {
