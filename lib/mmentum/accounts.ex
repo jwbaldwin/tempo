@@ -121,11 +121,9 @@ defmodule Mmentum.Accounts do
 
   """
   def update_user_full_name(user, attrs) do
-    changeset =
-      user
-      |> User.full_name_changeset(attrs)
-
-    # TODO: actually update the name
+    user
+    |> User.full_name_changeset(attrs)
+    |> Repo.update()
   end
 
   @doc """
