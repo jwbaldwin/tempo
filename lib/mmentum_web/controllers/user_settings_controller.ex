@@ -4,10 +4,28 @@ defmodule MmentumWeb.UserSettingsController do
   alias Mmentum.Accounts
   alias MmentumWeb.UserAuth
 
-  plug :assign_email_and_password_changesets
+  plug :assign_changesets
 
   def edit(conn, _params) do
     render(conn, "edit.html")
+  end
+
+  def update(conn, %{"action" => "update_full_name"} = params) do
+    %{"user" => user_params} = params
+    user = conn.assigns.current_user
+
+    case Accounts.update_user_full_name(user, user_params) do
+      {:ok, _applied_user} ->
+        conn
+        |> put_flash(
+          :success,
+          "Full name has been successfully changed"
+        )
+        |> redirect(to: Routes.user_settings_path(conn, :edit))
+
+      {:error, changeset} ->
+        render(conn, "edit.html", full_name_changeset: changeset)
+    end
   end
 
   def update(conn, %{"action" => "update_email"} = params) do
@@ -64,11 +82,12 @@ defmodule MmentumWeb.UserSettingsController do
     end
   end
 
-  defp assign_email_and_password_changesets(conn, _opts) do
+  defp assign_changesets(conn, _opts) do
     user = conn.assigns.current_user
 
     conn
     |> assign(:email_changeset, Accounts.change_user_email(user))
     |> assign(:password_changeset, Accounts.change_user_password(user))
+    |> assign(:full_name_changeset, Accounts.change_user_full_name(user))
   end
 end

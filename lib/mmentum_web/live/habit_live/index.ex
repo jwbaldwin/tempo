@@ -25,7 +25,7 @@ defmodule MmentumWeb.HabitLive.Index do
       current_day: TimeHelpers.current_day(),
       current_time: TimeHelpers.current_time(),
       days_until_end_of_week: TimeHelpers.days_to_end(:week),
-      greeting: TimeHelpers.greeting_for_time_of_day(),
+      greeting: greeting_for_time_of_day(socket),
       time_of_day: TimeHelpers.time_of_day()
     })
   end
@@ -105,5 +105,11 @@ defmodule MmentumWeb.HabitLive.Index do
       |> Enum.find(&(&1.id == String.to_integer(habit_id)))
 
     habit.logs
+  end
+
+  defp greeting_for_time_of_day(socket) do
+    user = get_current_user(socket)
+    [partial_name, _rest] = String.split(user.full_name, " ")
+    TimeHelpers.greeting_for_time_of_day() <> ", " <> partial_name
   end
 end

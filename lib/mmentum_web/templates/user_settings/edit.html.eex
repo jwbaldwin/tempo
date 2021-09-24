@@ -1,53 +1,84 @@
-<h1>Settings</h1>
-
-<h3>Change email</h3>
-
-<%= form_for @email_changeset, Routes.user_settings_path(@conn, :update), fn f -> %>
-  <%= if @email_changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+<div class="mt-6 sm:mt-20 prose dark:prose-light">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0">
+        <h4 class="text-lg font-medium leading-6 ~text-slate-900">Settings</h4>
+        <p class="mt-1 text-sm ~text-slate-500">Change or update your personal information</p>
+      </div>
     </div>
-  <% end %>
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <h4>Change name</h4>
 
-  <%= hidden_input f, :action, name: "action", value: "update_email" %>
+      <%= form_for @full_name_changeset, Routes.user_settings_path(@conn, :update), fn f -> %>
+        <%= if @full_name_changeset.action do %>
+          <div class="alert alert-danger">
+            <p>Oops, something went wrong! Please check the errors below.</p>
+          </div>
+        <% end %>
 
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-  <%= error_tag f, :email %>
+        <%= hidden_input f, :action, name: "action", value: "update_full_name" %>
 
-  <%= label f, :current_password, for: "current_password_for_email" %>
-  <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email" %>
-  <%= error_tag f, :current_password %>
+        <%= label f, :full_name, class: "base-label mt-4" %>
+        <%= text_input f, :full_name, required: true, class: "base-input mt-1" %>
+        <%= error_tag f, :full_name %>
 
-  <div>
-    <%= submit "Change email" %>
-  </div>
-<% end %>
+        <div>
+          <%= submit "Change name", class: "btn-secondary mt-4" %>
+        </div>
+      <% end %>
 
-<h3>Change password</h3>
+      <h4 class="pt-8">Change email</h4>
 
-<%= form_for @password_changeset, Routes.user_settings_path(@conn, :update), fn f -> %>
-  <%= if @password_changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+      <%= form_for @email_changeset, Routes.user_settings_path(@conn, :update), fn f -> %>
+        <%= if @email_changeset.action do %>
+          <div class="alert alert-danger">
+            <p>Oops, something went wrong! Please check the errors below.</p>
+          </div>
+        <% end %>
+
+        <%= hidden_input f, :action, name: "action", value: "update_email" %>
+
+        <%= label f, :email, class: "base-label mt-4" %>
+        <%= email_input f, :email, required: true, class: "base-input mt-1" %>
+        <%= error_tag f, :email %>
+
+        <%= label f, :current_password, for: "current_password_for_email", class: "base-label mt-4" %>
+        <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email", class: "base-input mt-1" %>
+        <%= error_tag f, :current_password %>
+
+        <div>
+          <%= submit "Change email", class: "btn-secondary mt-4" %>
+        </div>
+      <% end %>
+
+      <h4 class="pt-8">Change password</h4>
+
+      <%= form_for @password_changeset, Routes.user_settings_path(@conn, :update), fn f -> %>
+        <%= if @password_changeset.action do %>
+          <div class="alert alert-danger">
+            <p>Oops, something went wrong! Please check the errors below.</p>
+          </div>
+        <% end %>
+
+        <%= hidden_input f, :action, name: "action", value: "update_password" %>
+
+        <%= label f, :password, "New password", class: "base-label mt-4" %>
+        <%= password_input f, :password, required: true, class: "base-input mt-1" %>
+        <%= error_tag f, :password %>
+
+        <%= label f, :password_confirmation, "Confirm new password", class: "base-label mt-4" %>
+        <%= password_input f, :password_confirmation, required: true, class: "base-input mt-1" %>
+        <%= error_tag f, :password_confirmation %>
+
+        <%= label f, :current_password, for: "current_password_for_password", class: "base-label mt-8" %>
+        <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_password", class: "base-input mt-1" %>
+        <%= error_tag f, :current_password %>
+
+        <div>
+          <%= submit "Change password", class: "btn-secondary mt-4" %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-
-  <%= hidden_input f, :action, name: "action", value: "update_password" %>
-
-  <%= label f, :password, "New password" %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
-
-  <%= label f, :password_confirmation, "Confirm new password" %>
-  <%= password_input f, :password_confirmation, required: true %>
-  <%= error_tag f, :password_confirmation %>
-
-  <%= label f, :current_password, for: "current_password_for_password" %>
-  <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_password" %>
-  <%= error_tag f, :current_password %>
-
-  <div>
-    <%= submit "Change password" %>
+    </div>
   </div>
-<% end %>
+</div>

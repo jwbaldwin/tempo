@@ -96,6 +96,37 @@ defmodule Mmentum.Accounts do
   ## Settings
 
   @doc """
+  Returns an `%Ecto.Changeset{}` for changing the user full_name.
+
+  ## Examples
+
+      iex> change_user_full_name(user)
+      %Ecto.Changeset{data: %User{}}
+
+  """
+  def change_user_full_name(user, attrs \\ %{}) do
+    User.full_name_changeset(user, attrs)
+  end
+
+  @doc """
+  Updates the user full_name.
+
+  ## Examples
+
+      iex> update_user_full_name(user, "valid full_name", %{full_name: ...})
+      {:ok, %User{}}
+
+      iex> update_user_full_name(user, "invalid full_name", %{full_name: ...})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_user_full_name(user, attrs) do
+    user
+    |> User.full_name_changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
   Returns an `%Ecto.Changeset{}` for changing the user email.
 
   ## Examples

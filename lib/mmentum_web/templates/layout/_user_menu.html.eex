@@ -1,5 +1,5 @@
 <div class="relative py-6">
-  <nav class="relative flex items-center justify-between sm:h-10 lg:justify-start" aria-label="Global">
+  <nav class="relative flex px-4 sm:px-0 items-center justify-between sm:h-10 lg:justify-start" aria-label="Global">
     <div class="flex">
       <%= link to: Routes.habit_index_path(@conn, :index), class: "w-16 flex h-8 sm:h-12 ~text-slate-900 h-8 sm:h-12" do %>
         <svg viewBox="0 0 255 221" fill="none" class="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">

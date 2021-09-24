@@ -4,6 +4,7 @@
 #
 users = [
   %{
+    full_name: "James Baldwin",
     email: "jwbaldwin3@gmail.com",
     password: "password12345"
   }

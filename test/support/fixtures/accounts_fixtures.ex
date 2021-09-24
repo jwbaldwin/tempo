@@ -4,11 +4,13 @@ defmodule Mmentum.AccountsFixtures do
   entities via the `Mmentum.Accounts` context.
   """
 
+  def unique_user_full_name, do: "name #{System.unique_integer()}"
   def unique_user_email, do: "user#{System.unique_integer()}@example.com"
   def valid_user_password, do: "hello world!"
 
   def valid_user_attributes(attrs \\ %{}) do
     Enum.into(attrs, %{
+      full_name: unique_user_full_name(),
       email: unique_user_email(),
       password: valid_user_password()
     })
